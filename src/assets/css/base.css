@@ -1,0 +1,18 @@
+html, body {
+  height: 100%;
+  background: #f9f9f9;
+  overflow: hidden; /** 不让 html 和 body 滚动，让 #app 滚动，可以添加 element-plus 回到顶部功能 */
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+#app {
+  height: 100%;
+  overflow: auto;
+}
+
+ul {
+  list-style-type: none;
+}
