@@ -1,12 +1,15 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import { store, key } from './store'
-import router from './router'
-import ElementUI from './plugins/element-ui'
-import 'element-plus/lib/theme-chalk/index.css'
+// style
+import './assets/css/base.css'
+import './assets/css/global.scss'
+import './assets/iconfont/iconfont.css'
+import 'nprogress/nprogress.css'
+// plugins
+import plugins from './plugins'
+// permision
+import './router/permision'
 
 createApp(App)
-.use(store, key)
-.use(router)
-.use(ElementUI)
+.use(plugins)
 .mount('#app')
