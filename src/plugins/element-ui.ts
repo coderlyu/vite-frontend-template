@@ -77,7 +77,11 @@ import {
   ElTooltip,
   ElTransfer,
   ElTree,
-  ElUpload
+  ElUpload,
+  ElLoading,
+  ElMessage,
+  ElMessageBox,
+  ElNotification,
 } from 'element-plus'
 
 const elements = [
@@ -158,13 +162,19 @@ const elements = [
   ElTooltip,
   ElTransfer,
   ElTree,
-  ElUpload
+  ElUpload,
 ]
+
+const plugins = [ElLoading, ElMessage, ElMessageBox, ElNotification]
 
 export default {
   install(app: App<any>) {
     elements.forEach((component) => {
       app.component(component.name, component)
     })
-  }
-} 
+
+    plugins.forEach((plugin) => {
+      app.use(plugin)
+    })
+  },
+}
