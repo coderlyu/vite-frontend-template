@@ -1,0 +1,86 @@
+{
+  "id": "2382143",
+  "name": "vite2-bg-template",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "12548806",
+      "name": "v6",
+      "font_class": "v",
+      "unicode": "e666",
+      "unicode_decimal": 58982
+    },
+    {
+      "icon_id": "12548807",
+      "name": "v2",
+      "font_class": "v1",
+      "unicode": "e665",
+      "unicode_decimal": 58981
+    },
+    {
+      "icon_id": "12548809",
+      "name": "v7",
+      "font_class": "v2",
+      "unicode": "e667",
+      "unicode_decimal": 58983
+    },
+    {
+      "icon_id": "12643756",
+      "name": "v5",
+      "font_class": "v3",
+      "unicode": "e672",
+      "unicode_decimal": 58994
+    },
+    {
+      "icon_id": "12643757",
+      "name": "v4",
+      "font_class": "v4",
+      "unicode": "e673",
+      "unicode_decimal": 58995
+    },
+    {
+      "icon_id": "12643761",
+      "name": "v9",
+      "font_class": "v5",
+      "unicode": "e674",
+      "unicode_decimal": 58996
+    },
+    {
+      "icon_id": "12643765",
+      "name": "v8",
+      "font_class": "v6",
+      "unicode": "e675",
+      "unicode_decimal": 58997
+    },
+    {
+      "icon_id": "12643786",
+      "name": "v1",
+      "font_class": "v7",
+      "unicode": "e676",
+      "unicode_decimal": 58998
+    },
+    {
+      "icon_id": "12643827",
+      "name": "v3",
+      "font_class": "v8",
+      "unicode": "e677",
+      "unicode_decimal": 58999
+    },
+    {
+      "icon_id": "16561802",
+      "name": "v",
+      "font_class": "v9",
+      "unicode": "e7dd",
+      "unicode_decimal": 59357
+    },
+    {
+      "icon_id": "15167625",
+      "name": "user",
+      "font_class": "user",
+      "unicode": "e657",
+      "unicode_decimal": 58967
+    }
+  ]
+}
