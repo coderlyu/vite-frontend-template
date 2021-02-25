@@ -1,5 +1,6 @@
 <template>
   <router-view />
+  <el-backtop target="#app" :bottom="50" />
 </template>
 <script>
 import { defineComponent, provide } from 'vue'

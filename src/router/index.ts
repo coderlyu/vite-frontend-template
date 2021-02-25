@@ -2,6 +2,12 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Layout from '../components/Layout.vue'
 const routes: Array<RouteRecordRaw> = [
   {
+    path: '',
+    redirect: (_) => {
+      return { path: '/home' }
+    },
+  },
+  {
     path: '/',
     component: Layout,
     children: [
@@ -11,7 +17,7 @@ const routes: Array<RouteRecordRaw> = [
         component: () =>
           import(/* webpackChunkName: 'Home' */ '../views/home/index.vue'),
         meta: {
-          title: '主页-后台管理模板',
+          title: '主页',
         },
       },
       {
@@ -20,7 +26,7 @@ const routes: Array<RouteRecordRaw> = [
         component: () =>
           import(/* webpackChunkName: 'About' */ '../views/about/index.vue'),
         meta: {
-          title: '关于-后台管理模板',
+          title: '关于',
         },
       },
       {
@@ -31,7 +37,7 @@ const routes: Array<RouteRecordRaw> = [
             /* webpackChunkName: 'Profile' */ '../views/profile/index.vue'
           ),
         meta: {
-          title: '个人中心-后台管理模板',
+          title: '个人中心',
         },
       },
       {
@@ -40,7 +46,7 @@ const routes: Array<RouteRecordRaw> = [
         component: () =>
           import(/* webpackChunkName: 'Data' */ '../views/data/index.vue'),
         meta: {
-          title: '数据-后台管理模板',
+          title: '数据',
         },
       },
     ],
@@ -50,6 +56,17 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Login',
     component: () =>
       import(/* webpackChunkName: 'Login' */ '../views/login/index.vue'),
+    meta: {
+      title: '登录',
+    },
+  },
+  {
+    path: '/404',
+    component: () =>
+      import(/* webpackChunkName: 'Error' */ '../views/error/404.vue'),
+    meta: {
+      title: '404',
+    },
   },
   {
     path: '/',
@@ -57,20 +74,24 @@ const routes: Array<RouteRecordRaw> = [
       return { path: '/home' }
     },
   },
-  // {
-  //   path: '*',
-  //   redirect: _ => {
-  //     return { path: '/home' }
-  //   }
-  // }
+  {
+    path: '/:currentPath(.*)*',
+    redirect: (_) => {
+      return { path: '/404' }
+    },
+  },
 ]
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
   scrollBehavior(to, from, savedPosition) {
-    return { top: 0 }
-  }
+    return {
+      el: '#app',
+      top: 0,
+      behavior: 'smooth',
+    }
+  },
 })
 
 export default router
