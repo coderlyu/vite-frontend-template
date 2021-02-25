@@ -6,6 +6,62 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "18267923",
+      "name": "哈希",
+      "font_class": "haxi",
+      "unicode": "e98f",
+      "unicode_decimal": 59791
+    },
+    {
+      "icon_id": "18267934",
+      "name": "流转",
+      "font_class": "liuzhuan",
+      "unicode": "e992",
+      "unicode_decimal": 59794
+    },
+    {
+      "icon_id": "18267938",
+      "name": "区块",
+      "font_class": "qukuai",
+      "unicode": "e994",
+      "unicode_decimal": 59796
+    },
+    {
+      "icon_id": "18267942",
+      "name": "欧元",
+      "font_class": "ouyuan",
+      "unicode": "e995",
+      "unicode_decimal": 59797
+    },
+    {
+      "icon_id": "18267949",
+      "name": "商业化全球",
+      "font_class": "shangyehuaquanqiu",
+      "unicode": "e996",
+      "unicode_decimal": 59798
+    },
+    {
+      "icon_id": "18267957",
+      "name": "溯源",
+      "font_class": "suyuan",
+      "unicode": "e997",
+      "unicode_decimal": 59799
+    },
+    {
+      "icon_id": "18267958",
+      "name": "数据库",
+      "font_class": "shujuku",
+      "unicode": "e998",
+      "unicode_decimal": 59800
+    },
+    {
+      "icon_id": "18267973",
+      "name": "印章认证",
+      "font_class": "yinzhangrenzheng",
+      "unicode": "e99b",
+      "unicode_decimal": 59803
+    },
+    {
       "icon_id": "12548806",
       "name": "v6",
       "font_class": "v",
