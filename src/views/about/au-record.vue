@@ -2,8 +2,8 @@
   <el-steps direction="vertical">
     <el-step v-for="i in 10" :key="i">
       <template #title>
-        <section class="title au-flex au-column-center">
-          <span class="name au-in-block au-line-one">coderly</span>
+        <section class="title au-flex au-flex-column-center">
+          <span class="name au-in-block au-text-line-one">coderly</span>
           <small class="operation">修改密码</small>
         </section>
       </template>

@@ -17,7 +17,7 @@
   height: 100%;
   flex-direction: column;
   h2 {
-    color: #5ac6f9;
+    color: #409EFF;
     font-size: 100px;
     font-family: fantasy;
     letter-spacing: 0.5em;
@@ -34,10 +34,10 @@
       }
     }
     a {
-      color: #5ac6f9;
+      color: #409EFF;
       transition: all .35s;
       &:hover {
-        color: rgba(90, 198, 249, .8);
+        color: #5ac6f9;
         text-decoration: none;
       }
     }

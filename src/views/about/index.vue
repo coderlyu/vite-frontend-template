@@ -5,6 +5,11 @@
     @tab-click="tabClick"
     v-model="avtiveTab"
   >
+    <el-tab-pane name="produce">
+      <template #label>
+        <span><i class="el-icon-date"></i> 创作空间</span>
+      </template>
+    </el-tab-pane>
     <el-tab-pane name="message">
       <template #label>
         <span><i class="el-icon-date"></i> 消息中心</span>
@@ -22,15 +27,20 @@
 import { defineComponent, ref } from 'vue'
 import AuMessage from './au-message.vue'
 import AuRecord from './au-record.vue'
+import AuProduce from './au-produce.vue'
 export default defineComponent({
   name: 'About',
   components: {
     AuMessage,
-    AuRecord
+    AuRecord,
+    AuProduce
   },
   setup(prop, ctx) {
     const tabClick = ({ props }) => {
       switch (props.name) {
+        case 'produce':
+          activeComponent.value = 'AuProduce'
+          break
         case 'message':
           activeComponent.value = 'AuMessage'
           break
@@ -39,8 +49,8 @@ export default defineComponent({
           break
       }
     }
-    const avtiveTab = ref('message')
-    const activeComponent = ref('AuMessage')
+    const avtiveTab = ref('produce')
+    const activeComponent = ref('AuProduce')
     return {
       tabClick,
       avtiveTab,

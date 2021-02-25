@@ -27,7 +27,6 @@
       </small>
     </li>
   </ul>
-  <el-backtop target="#app" :bottom="50" />
 </template>
 <script>
 import { defineComponent, ref } from 'vue'

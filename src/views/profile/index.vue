@@ -195,7 +195,7 @@
 import { defineComponent, reactive, ref } from 'vue'
 import { cloneDeep } from 'lodash'
 import { useRouter } from 'vue-router'
-import { uploadState } from './upload'
+import { uploadState } from './au-upload'
 export default defineComponent({
   name: 'Profile',
   setup(prop, ctx) {

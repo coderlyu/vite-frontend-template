@@ -1,8 +1,8 @@
 <template>
-  <div class="top-header-wrapper">
+  <div class="au-bg-white top-header-wrapper">
     <section class="left-title">
-      <img src="../assets/images/study.png" alt="logo" class="left-logo">
-      <h1>后台管理模板</h1>
+      <img src="" alt="logo" class="left-logo">
+      <h1>LOGO</h1>
     </section>
     <el-dropdown @command="commandClick">
       <span class="el-dropdown-link">
@@ -59,6 +59,11 @@ export default defineComponent({
   display: flex;
   justify-content: space-between;
   padding-right: 16px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
   .left-title {
     display: flex;
     align-items: center;
@@ -66,9 +71,12 @@ export default defineComponent({
       height: 60px;
     }
     h1 {
-      letter-spacing: 0.5em;
+      font-family: fantasy;
+      color: #409EFF;
+      font-size: 30px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
       margin-left: 1em;
-      font-size: 25px;
     }
   }
   .el-dropdown-link {

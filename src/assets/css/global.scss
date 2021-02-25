@@ -5,8 +5,11 @@
 .au-bg-white {
   @include mixinBgColor;
 }
+.au-bg-grey {
+  background-color: #f9f9f9 !important;
+}
 
-
+/** card  */
 .au-card {
   @include mixinBgColor;
   border-radius: 4px;
@@ -23,23 +26,82 @@
 }
 
 
-.au-line-one {
+/** 单行省略 */
+.au-text-line-one {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-/**
-标签元素
-*/
+
+/** svg style */
+.au-icon {
+  width: 20px;
+  height: 20px;
+}
+
+
+/** elements arrangement */
+.au-ml-8 {
+  margin-left: 8px;
+}
+.au-mt-8 {
+  margin-top: 8px;
+}
+.au-pd-8 {
+  padding: 8px;
+}
+.au-mt-16 {
+  margin-top: 16px;
+}
+.au-ml-16 {
+  margin-left: 16px;
+}
+.au-pd-16 {
+  padding: 16px;
+}
+.au-mt-32 {
+  margin-top: 32px;
+}
+.au-mr-32 {
+  margin-right: 32px;
+}
+.au-pd-32 {
+  padding: 32px;
+}
+
+/** text alignment direction  */
+.au-text-end {
+  text-align: end;
+}
+.au-text-center {
+  text-align: center;
+}
+.au-text-link {
+  color: #444;
+  text-decoration: none;
+  &:hover {
+    color: #444;
+    text-decoration: none;
+  }
+}
+
 .au-block {
   display: block;
 }
 .au-in-block {
   display: inline-block;
 }
+.au-overflow-hidden {
+  overflow: hidden;
+}
 .au-flex {
   display: flex;
+}
+.au-flex-rc-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .au-flex-row-center {
   justify-content: center;

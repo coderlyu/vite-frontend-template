@@ -4,12 +4,9 @@
 </template>
 <script>
 import { defineComponent, provide } from 'vue'
-import Layout from './components/Layout.vue'
 import { getStore } from './store/index'
 export default defineComponent({
-  components: {
-    Layout
-  },
+  name: 'App',
   setup() {
     provide('Store', getStore())
   }
