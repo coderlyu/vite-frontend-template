@@ -1,5 +1,5 @@
 import { AppContext, ref, watch } from 'vue'
-export default function pagination(ctx: AppContext, callback?: () => unknown, autoFetch: boolean = false) {
+export default function pagination(ctx?: AppContext, callback?: () => unknown, autoFetch: boolean = false) {
   const limit = ref(10)
   const page = ref(1)
   const total = ref(100)

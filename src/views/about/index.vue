@@ -1,6 +1,7 @@
 <template>
   <el-tabs
-    class="about"
+    class="au-mt-32"
+    :class="isMobile ? '' : 'au-mr-16'"
     type="border-card"
     @tab-click="tabClick"
     v-model="avtiveTab"
@@ -20,7 +21,7 @@
         <span><i class="el-icon-date"></i> 操作记录</span>
       </template>
     </el-tab-pane>
-    <component :is="activeComponent" />
+    <component :is="activeComponent" :isMobile="isMobile" />
   </el-tabs>
 </template>
 <script>
@@ -28,6 +29,7 @@ import { defineComponent, ref } from 'vue'
 import AuMessage from './au-message.vue'
 import AuRecord from './au-record.vue'
 import AuProduce from './au-produce.vue'
+import Screen from '../../components/au-screen'
 export default defineComponent({
   name: 'About',
   components: {
@@ -36,6 +38,7 @@ export default defineComponent({
     AuProduce
   },
   setup(prop, ctx) {
+    const { isMobile } = Screen(ctx)
     const tabClick = ({ props }) => {
       switch (props.name) {
         case 'produce':
@@ -55,13 +58,8 @@ export default defineComponent({
       tabClick,
       avtiveTab,
       activeComponent,
+      isMobile
     }
   },
 })
 </script>
-<style lang="scss" scoped>
-.about {
-  margin-top: 32px;
-  margin-right: 16px;
-}
-</style>

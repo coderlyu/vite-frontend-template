@@ -1,14 +1,17 @@
 import { getlocalStorageToken } from "../utils/_ls"
 export interface State {
-  token: string,
-  userInfo: UserInfo,
-  [props: string]: any
+  token: string;
+  userInfo: UserInfo;
+  screenWidth: number;
+  isMobile: boolean;
+  toggleClosed: boolean;
+  [props: string]: any;
 }
 
 export interface UserInfo {
-  username: string,
-  password: string,
-  [props: string]: any
+  username: string;
+  password: string;
+  [props: string]: any;
 }
 
 export function state() {
@@ -17,6 +20,9 @@ export function state() {
     userInfo: {
       username: '',
       password: ''
-    }
+    },
+    screenWidth: 1000,
+    toggleClosed: false,
+    isMobile: false
   }
 }

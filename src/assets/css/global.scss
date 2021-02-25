@@ -32,6 +32,14 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+.au-text-line-two {
+  white-space: pre-wrap;
+  overflow : hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
 
 
 /** svg style */
@@ -56,6 +64,9 @@
 }
 .au-ml-16 {
   margin-left: 16px;
+}
+.au-mr-16 {
+  margin-right: 16px;
 }
 .au-pd-16 {
   padding: 16px;

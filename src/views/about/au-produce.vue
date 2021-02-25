@@ -3,14 +3,14 @@
     <section class="au-flex au-flex-column-center grade-title">
       <h4 class="au-text-line-one">
         创作等级
-        <small class="au-ml-8">最新一次更新2021/10/09</small>
+        <small class="au-ml-8">最新一次更新于2021/10/09</small>
       </h4>
       <a href="javascript:void(0)" class="au-link-text au-text-link au-text-center" @click="readStatements">
         查看等级说明
         <i class="el-icon-arrow-right"></i>
       </a>
     </section>
-    <section class="au-flex au-flex-column-center au-mt-32 grade-statement">
+    <section class="au-flex au-flex-column-center au-mt-16 grade-statement">
       <span class="au-flex-rc-center au-pd-16 self-icon-wrapper">
         <V4 class="au-icon self-icon"/>
       </span>
@@ -43,9 +43,9 @@
       </span>
       <div class="au-overflow-hidden medal-body">
         <p class="au-text-line-one">账号信用</p>
-        <p class="au-text-line-one au-mt-32">出现违规行为将会扣除信用分，信用分降低到一定分数会触发账号处罚，并降低微淘号达人指数</p>
+        <p class="au-mt-32" :class="isMobile ? '' : 'au-text-line-one'">出现违规行为将会扣除信用分，信用分降低到一定分数会触发账号处罚，并降低微淘号达人指数</p>
       </div>
-      <small class="medal-number">95分</small>
+      <small class="au-text-center medal-number">95分</small>
     </section>
   </div>
   <div class="au-card au-mt-32 au-pd-16 au-bg-grey self-active">
@@ -70,6 +70,12 @@ import V4 from '../../icons/svg/v4.svg'
 import G1 from '../../icons/svg/g1.svg'
 export default defineComponent({
   name: 'AuProduce',
+  props: {
+    isMobile: {
+      type: Boolean,
+      default: false
+    }
+  },
   components: {
     V4,
     G1
@@ -142,7 +148,10 @@ export default defineComponent({
       flex: 1;
       font-size: 16px;
       font-weight: 600;
+      height: 40px;
+      position: relative;
       small {
+        position: inherit;
         font-size: 12px;
         color: #a0a0a0;
         font-weight: 400;
@@ -195,6 +204,7 @@ export default defineComponent({
   }
 }
 .self-medal {
+  position: relative;
   flex-direction: column;
   .title {
     line-height: 32px;
@@ -225,6 +235,7 @@ export default defineComponent({
     }
   }
   .medal-number {
+    position: inherit;
     font-size: 14px;
     font-weight: 600;
     width: 100px;
@@ -290,8 +301,7 @@ export default defineComponent({
     }
   }
 }
-@keyframes eyeBeat
-{
+@keyframes eyeBeat {
   0% {
     transform: scale(1);
   }
@@ -300,6 +310,29 @@ export default defineComponent({
   }
   100% {
     transform: scale(1);
+  }
+}
+@media screen and(max-width: 769px) {
+  .self-grade {
+    .grade-title {
+      h4 {
+        small {
+          position: absolute;
+          left: 0;
+          bottom: 0px;
+        }
+      }
+      a {
+        width: 126px;
+      }
+    }
+  }
+  .self-medal {
+    .medal-number {
+      position: absolute;
+      right: 0;
+      top: 5%;
+    }
   }
 }
 </style>

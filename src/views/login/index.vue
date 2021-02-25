@@ -148,4 +148,11 @@ export default defineComponent({
   font-family: cursive;
   letter-spacing: 1px;
 }
+@media screen and (max-width: 769px) {
+  .login {
+    .login-wrapper {
+      width: 95%;
+    }
+  }
+}
 </style>

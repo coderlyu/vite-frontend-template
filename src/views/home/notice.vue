@@ -12,7 +12,8 @@
     <el-pagination
       :page-size="limit"
       :current-page="page"
-      layout="prev, pager, jumper, next"
+      :pager-count="5"
+      :layout="layout"
       :total="total"
       @size-change="pageSizeChange"
       @current-change="currentPageChange"
@@ -20,12 +21,19 @@
   </section>
 </template>
 <script>
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, computed } from 'vue'
 import { ElMessage } from 'element-plus'
 import pagination from '../../components/au-pagination'
 export default defineComponent({
   name: 'NoticeList',
-  setup(props, ctx) {
+  props: {
+    isMobile: {
+      type: Boolean,
+      default: false
+    }
+  },
+  setup(prop, ctx) {
+    const layout = computed(() => prop.isMobile ? 'prev, pager, next' : 'prev, pager, jumper, next')
     const noticeList = ref([
       {
         id: 1,
@@ -87,9 +95,11 @@ export default defineComponent({
       ElMessage('敬请期待')
     }
     return {
+      layout,
       ...pagination(ctx, fetchData, true),
       noticeList,
       tags,
+      isMobile: prop.isMobile,
       toDetail
     }
   }
@@ -99,6 +109,7 @@ export default defineComponent({
 ul {
   li {
     border-bottom: 1px dashed #eaeaea;
+    position: relative;
     p {
       flex: 1;
       font-size: 15px;
@@ -110,10 +121,22 @@ ul {
       }
     }
     .time {
+      position: inherit;
       font-size: 12px;
       color: #888;
       width: 100px;
       text-align: center;
+    }
+  }
+}
+@media screen and(max-width: 769px) {
+  ul {
+    li {
+      .time {
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
     }
   }
 }

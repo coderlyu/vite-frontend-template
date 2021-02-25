@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <el-row :gutter="16" class="au-card au-box-shadow au-mt-16 au-pd-16">
+    <el-row :gutter="16" class="au-card au-box-shadow au-mt-16 au-pd-16" style="margin-left: -5px;margin-right: -5px;">
       <el-col :xs="24" :sm="24" :md="24" :lg="18" :xl="18">
         <el-row :gutter="16" class="au-flex au-flex-column-center au-pd-16 au-mt-32 home-profile">
            <el-col :xs="24" :sm="24" :md="24" :lg="14" :xl="14">
@@ -42,7 +42,7 @@
       </el-col>
     </el-row>
     <el-row :gutter="10" class="au-card au-box-shadow au-mt-16 au-pd-16">
-      <el-col :xs="6" :sm="8" :md="8" :lg="6" :xl="4" v-for="item in counts" :key="item.id" class="au-mt-16">
+      <el-col :xs="12" :sm="12" :md="8" :lg="6" :xl="4" v-for="item in counts" :key="item.id" class="au-mt-16">
         <section class="home-count">
           <i class="iconfont self-icon" :class="item.icon"></i>
           <section style="flex: 1;">
@@ -54,7 +54,7 @@
     </el-row>
     <section class="au-card au-box-shadow au-mt-16 au-pd-16 notice">
         <p class="notice-title">平台公告</p>
-        <notice-list />
+        <notice-list :isMobile="isMobile" />
     </section>
   </div>
 </template>
@@ -67,6 +67,7 @@ import V2 from '../../icons/svg/v2.svg'
 import V3 from '../../icons/svg/v3.svg'
 import V4 from '../../icons/svg/v4.svg'
 import V5 from '../../icons/svg/v5.svg'
+import Screen from '../../components/au-screen'
 export default defineComponent({
   components: {
     V1,
@@ -78,6 +79,7 @@ export default defineComponent({
   },
   name: 'Home',
   setup(prop, ctx) {
+    const { isMobile } = Screen()
     const counts = ref([
       {
         id: 1,
@@ -131,6 +133,7 @@ export default defineComponent({
       return styles
     })
     return {
+      isMobile,
       counts,
       levelNameActive,
       levelActive
@@ -267,6 +270,15 @@ export default defineComponent({
       font-size: 20px;
       color: #000;
       font-weight: 600;
+    }
+  }
+}
+@media screen and (max-width: 769px) {
+  .home {
+    margin-right: 0px;
+    padding: 16px 0px;
+    .home-count {
+      padding: 32px 0px;
     }
   }
 }

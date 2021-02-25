@@ -1,6 +1,6 @@
 import { State, UserInfo } from './state';
 import { ActionContext } from 'vuex'
-import { SET_TOKEN, CLEAR_TOKEN, USER_LOGIN } from './types'
+import { SET_TOKEN, CLEAR_TOKEN, USER_LOGIN, UPDATE_SCREEN_WIDTH, UPDATE_IS_MOBILE, UPDATE_TOGGLE_TYPE } from './types'
 
 export default {
   setToken({ commit }: ActionContext<State, State>, token: string) {
@@ -18,5 +18,18 @@ export default {
       }
       reject('登录失败')
     })
+  },
+  updetaScreenWidth({ commit }: ActionContext<State, State>, width: number) {
+    if (width < 769) {
+      commit(UPDATE_IS_MOBILE, true)
+      commit(UPDATE_TOGGLE_TYPE, true)
+    } else {
+      commit(UPDATE_IS_MOBILE, false)
+      commit(UPDATE_TOGGLE_TYPE, true)
+    }
+    commit(UPDATE_SCREEN_WIDTH, width)
+  },
+  updateToggleType({ commit }: ActionContext<State, State>, closed: number) {
+    commit(UPDATE_TOGGLE_TYPE, closed)
   }
 }

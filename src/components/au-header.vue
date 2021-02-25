@@ -1,7 +1,8 @@
 <template>
   <div class="au-bg-white top-header-wrapper">
     <section class="left-title">
-      <img src="" alt="logo" class="left-logo">
+      <i v-if="isMobile" class="toggle-icon au-ml-16" :class="toggleClass" @click="toggleClick"></i>
+      <!-- <img src="" alt="logo" class="left-logo"> -->
       <h1>LOGO</h1>
     </section>
     <el-dropdown @command="commandClick">
@@ -21,15 +22,17 @@
   </div>
 </template>
 <script>
-import { defineComponent } from 'vue'
+import { defineComponent, inject } from 'vue'
 import { useRouter } from 'vue-router'
-import { useStore } from 'vuex'
-import { key } from '../plugins/store'
+import Screen from './au-screen'
 export default defineComponent({
   name: 'TopHeader',
   setup(prop, ctx) {
     const router = useRouter()
-    const store = useStore(key)
+    const { store } = inject('Store')
+    const toggleClass = (isMobile, closed) => {
+      return closed.value ?  'el-icon-s-unfold' : 'el-icon-s-fold'
+    }
     const commandClick = (type) => {
       switch (type) {
         case 'Home':
@@ -49,6 +52,7 @@ export default defineComponent({
       }
     }
     return {
+     ...Screen(ctx, toggleClass),
       commandClick
     }
   },
@@ -67,6 +71,10 @@ export default defineComponent({
   .left-title {
     display: flex;
     align-items: center;
+    .toggle-icon {
+      font-size: 25px;
+      cursor: pointer;
+    }
     .left-logo {
       height: 60px;
     }
