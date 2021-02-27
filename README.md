@@ -9,11 +9,11 @@ This template should help get you started developing with Vue 3 and Typescript a
 
 - 💡 Vue 3.x
 - ⚡️ Typescript
-- 🛠️ Vite
+- 🛠️ Vite 2.x
 - 📦 Vuex 4.x
 - 🔩 Vue-Router 4.x
-- 🔑 Global Router Permision
-- 👍 Development Mock
+- 🔑 Md5 And Sign Provide Transmission For Website Security
+- 👍 Mock In Development
 - 🔖 Iconfont And Svg
 - 🔍 Element-plus UI
 - 📌 And More...
