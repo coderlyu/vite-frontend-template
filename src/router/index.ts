@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Layout from '../components/au-layout.vue'
+import EmptyLaoyout from '../components/au-layout-empty.vue'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '',
@@ -42,12 +43,31 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: 'data',
-        name: 'Data',
-        component: () =>
-          import(/* webpackChunkName: 'Data' */ '../views/data/index.vue'),
+        name: 'Census',
+        component: EmptyLaoyout,
         meta: {
-          title: '数据',
+          title: '数据统计',
         },
+        children: [
+          {
+            path: 'rank',
+            name: 'Rank',
+            component: () =>
+              import(/* webpackChunkName: 'Rank' */ '../views/data/rank.vue'),
+            meta: {
+              title: '最新排名',
+            },
+          },
+          {
+            path: 'data',
+            name: 'Data',
+            component: () =>
+              import(/* webpackChunkName: 'Data' */ '../views/data/index.vue'),
+            meta: {
+              title: '实时信息',
+            },
+          },
+        ],
       },
     ],
   },

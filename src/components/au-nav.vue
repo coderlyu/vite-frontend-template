@@ -9,10 +9,20 @@
         <i class="el-icon-s-home"></i>
         <template #title>主页</template>
       </el-menu-item>
-      <el-menu-item index="Data">
-        <i class="el-icon-menu"></i>
-        <template #title>数据</template>
-      </el-menu-item>
+      <el-submenu index="Census">
+        <template #title>
+          <i class="el-icon-menu"></i>
+          数据统计
+        </template>
+        <el-menu-item index="Rank">
+          <i class="el-icon-pie-chart"></i>
+          <template #title>最新排名</template>
+        </el-menu-item>
+        <el-menu-item index="Data">
+          <i class="el-icon-postcard"></i>
+          <template #title>实时信息</template>
+        </el-menu-item>
+      </el-submenu>
       <el-menu-item index="About">
         <i class="el-icon-s-order"></i>
         <template #title>关于</template>
@@ -34,28 +44,9 @@ export default defineComponent({
     const router = useRouter()
     const defaultActive = computed(() => route.name)
     const selectMenuItem = (type) => {
-      switch (type) {
-        case 'Home':
-          router.push({
-            name: 'Home'
-          })
-          break
-        case 'Data':
-          router.push({
-            name: 'Data'
-          })
-          break
-        case 'About':
-          router.push({
-            name: 'About'
-          })
-          break
-        case 'Profile':
-          router.push({
-            name: 'Profile'
-          })
-          break
-      }
+      router.push({
+        name: type
+      })
     }
     return {
       defaultActive,
@@ -74,7 +65,7 @@ export default defineComponent({
       width: 40px;
     }
   }
-  :deep(li.is-active) {
+  :deep(li.is-active.el-menu-item) {
     background: #f2f8ff;
     border-left: 3px solid #409EFF;
   }

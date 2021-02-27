@@ -27,17 +27,12 @@ export default defineComponent({
       type: Object,
       default: () => ({}),
     },
-    type: {
-      type: String,
-      default: 'input'
-    },
     value: {
       type: String || Number || Array || Object || Boolean,
       require: true
     }
   },
   setup(prop, ctx) {
-    console.log(prop.value)
     const selfVal = ref('')
     selfVal.value = prop.value
     const saveItem = () => {
@@ -52,18 +47,9 @@ export default defineComponent({
         prop: prop.config.props
       })
     }
-    const valueChange = (val) => {
-      selfVal.value = val
-      // console.log(val)
-      // ctx.emit('change', {
-      //   value: val,
-      //   prop: prop.config.props
-      // })
-    }
     return {
       selfVal,
       saveItem,
-      valueChange,
       showItemEdit
     }
   },

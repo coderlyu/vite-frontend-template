@@ -120,7 +120,6 @@ export default defineComponent({
 <style lang="scss" scoped>
 .home {
   margin-right: 16px;
-  padding: 16px;
   .home-profile {
     .profile-avatar {
       img {

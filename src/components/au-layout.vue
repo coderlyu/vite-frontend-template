@@ -3,7 +3,7 @@
     <el-header>
       <top-header />
     </el-header>
-    <el-row class="self-container">
+    <el-row :gutter="16" class="self-container">
       <el-col :xs="24" :sm="8" :md="8" :lg="6" :xl="4" class="hidden-xs-only" style="position: relative">
         <left-nav :style="navComputedStyle" />
       </el-col>
@@ -28,7 +28,7 @@
   </template>
 </template>
 <script lang="ts">
-import { defineComponent, ComputedRef, onMounted, computed, ref } from 'vue'
+import { defineComponent, ComputedRef, onMounted, computed, ref, onUnmounted } from 'vue'
 import LeftNav from './au-nav.vue'
 import TopHeader from './au-header.vue'
 import Screen from './au-screen'
@@ -44,6 +44,7 @@ export default defineComponent({
       else return closed.value ? 'self-opend' : 'self-closed'
     }
     const scrollTop = ref(0)
+    const doc = ref(null)
     const navComputedStyle = computed(() => {
       let _style = {
         position: 'absolute',
@@ -58,8 +59,16 @@ export default defineComponent({
       scrollTop.value = e.target.scrollTop
     }
     onMounted(() => {
-      let doc = document.getElementById('app')
-      doc?.addEventListener('scroll', computeScroll)
+      let _dc = document.getElementById('app')
+      if (_dc) {
+        doc.value = _dc 
+        doc.value?.addEventListener('scroll', computeScroll)
+      }
+    })
+    onUnmounted(() => {
+      if (doc.value) {
+        doc.value!.removeEventListener('scroll', computeScroll)
+      }
     })
     return {
       navComputedStyle,
