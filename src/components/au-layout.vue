@@ -3,7 +3,7 @@
     <el-header>
       <top-header />
     </el-header>
-    <el-row :gutter="16" class="self-container">
+    <el-row :gutter="16" class="self-container" style="margin-right: 0px;">
       <el-col :xs="24" :sm="8" :md="8" :lg="6" :xl="4" class="hidden-xs-only" style="position: relative">
         <left-nav :style="navComputedStyle" />
       </el-col>
