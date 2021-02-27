@@ -1,73 +1,88 @@
 <template>
-  <div class="au-card au-pd-16 au-bg-grey au-flex self-grade">
-    <section class="au-flex au-flex-column-center grade-title">
-      <h4 class="au-text-line-one">
-        创作等级
-        <small class="au-ml-8">最新一次更新于2021/10/09</small>
-      </h4>
-      <a href="javascript:void(0)" class="au-link-text au-text-link au-text-center" @click="readStatements">
-        查看等级说明
-        <i class="el-icon-arrow-right"></i>
-      </a>
-    </section>
-    <section class="au-flex au-flex-column-center au-mt-16 grade-statement">
-      <span class="au-flex-rc-center au-pd-16 self-icon-wrapper">
-        <V4 class="au-icon self-icon"/>
-      </span>
-      <section class="au-flex au-pd-8 au-overflow-hidden grade-statement-body">
-        <p class="au-text-line-one tips-text">你当前等级为 Lv 4，还差 200 分即可升级为 Lv 5</p>
-        <el-progress :percentage="35" color="#409EFF">
-          <small class="au-block au-text-end grade-statement-tips">
-            124 / 500
-            <el-popover
-              placement="top-start"
-              title="经验说明"
-              :width="200"
-              trigger="hover"
-              content="贡献越多，得到得经验越多，快快做任务吧"
-            >
-              <template #reference>
-                <i class="el-icon-warning"></i>
-              </template>
-            </el-popover>
-          </small>
-        </el-progress>
+  <div>
+    <div class="au-card au-pd-16 au-bg-grey au-flex self-grade">
+      <section class="au-flex au-flex-column-center grade-title">
+        <h4 class="au-text-line-one">
+          创作等级
+          <small class="au-ml-8">最新一次更新于2021/10/09</small>
+        </h4>
+        <a href="javascript:void(0)" class="au-link-text au-text-link au-text-center" @click="readStatements">
+          查看等级说明
+          <i class="el-icon-arrow-right"></i>
+        </a>
       </section>
-    </section>
-  </div>
-  <div class="au-card au-flex au-flex-row-center au-mt-32 au-pd-16 au-bg-grey self-medal">
-    <h4 class="au-text-line-one title">账号勋章</h4>
-    <section class="au-flex au-flex-column-center">
-      <span class="au-flex-rc-center au-mt-32 au-mr-32 self-icon-wrapper">
-        <G1 class="self-icon"/>
-      </span>
-      <div class="au-overflow-hidden medal-body">
-        <p class="au-text-line-one">账号信用</p>
-        <p class="au-mt-32" :class="isMobile ? '' : 'au-text-line-one'">出现违规行为将会扣除信用分，信用分降低到一定分数会触发账号处罚，并降低微淘号达人指数</p>
-      </div>
-      <small class="au-text-center medal-number">95分</small>
-    </section>
-  </div>
-  <div class="au-card au-mt-32 au-pd-16 au-bg-grey self-active">
-    <h4 class="au-text-line-one title">活动中心</h4>
-    <el-row :gutter="16">
-      <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="8" class="au-mt-32" v-for="item in activeList" :key="item.id">
-        <section class="au-bg-white au-overflow-hidden active-item">
-          <img :src="item.imgUrl" alt="活动图片" class="item-img">
-          <div class="self-mark" @click="toActiveDetail(item)">
-            <i class="el-icon-view"></i>
-          </div>
-          <p class="au-text-line-one date-time">{{ item.time }}</p>
+      <section class="au-flex au-flex-column-center au-mt-16 grade-statement">
+        <span class="au-flex-rc-center au-pd-16 self-icon-wrapper">
+          <V4 class="au-icon self-icon"/>
+        </span>
+        <section class="au-flex au-pd-8 au-overflow-hidden grade-statement-body">
+          <p class="au-text-line-one tips-text">你当前等级为 Lv 4，还差 200 分即可升级为 Lv 5</p>
+          <el-progress :percentage="35" color="#409EFF">
+            <small class="au-block au-text-end grade-statement-tips">
+              124 / 500
+              <el-popover
+                placement="top-start"
+                title="经验说明"
+                :width="200"
+                trigger="hover"
+                content="贡献越多，得到得经验越多，快快做任务吧"
+              >
+                <template #reference>
+                  <i class="el-icon-warning"></i>
+                </template>
+              </el-popover>
+            </small>
+          </el-progress>
         </section>
-      </el-col>
-    </el-row>
+      </section>
+    </div>
+    <div class="au-card au-flex au-flex-row-center au-mt-32 au-pd-16 au-bg-grey self-medal">
+      <h4 class="au-text-line-one title">账号勋章</h4>
+      <section class="au-flex au-flex-column-center">
+        <span class="au-flex-rc-center au-mt-32 au-mr-32 self-icon-wrapper">
+          <G1 class="self-icon"/>
+        </span>
+        <div class="au-overflow-hidden medal-body">
+          <p class="au-text-line-one">账号信用</p>
+          <p class="au-mt-32" :class="isMobile ? '' : 'au-text-line-one'">出现违规行为将会扣除信用分，信用分降低到一定分数会触发账号处罚，并降低微淘号达人指数</p>
+        </div>
+        <small class="au-text-center medal-number">95分</small>
+      </section>
+    </div>
+    <div class="au-card au-mt-32 au-pd-16 au-bg-grey self-active">
+      <h4 class="au-text-line-one title">活动中心</h4>
+      <el-row :gutter="16">
+        <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="8" class="au-mt-32" v-for="item in activeList" :key="item.id">
+          <section class="au-bg-white au-overflow-hidden active-item">
+            <img :src="item.imgUrl" alt="活动图片" class="item-img">
+            <div class="self-mark" @click="toActiveDetail(item)">
+              <i class="el-icon-view"></i>
+            </div>
+            <p class="au-text-line-one date-time">{{ item.time }}</p>
+          </section>
+        </el-col>
+      </el-row>
+    </div>
+    <section class="au-text-end au-mt-32">
+      <el-pagination
+        :page-size="limit"
+        :current-page="page"
+        :pager-count="5"
+        :layout="layout"
+        :total="total"
+        @size-change="pageSizeChange"
+        @current-change="currentPageChange"
+      />
+    </section>
   </div>
 </template>
 <script>
-import { defineComponent, ref } from 'vue'
+import { defineComponent, onMounted, ref, computed } from 'vue'
 import { ElMessage } from 'element-plus'
 import V4 from '../../icons/svg/v4.svg'
 import G1 from '../../icons/svg/g1.svg'
+import { getActiveList } from '../../api/about'
+import pagination from '../../components/au-pagination'
 export default defineComponent({
   name: 'AuProduce',
   props: {
@@ -80,61 +95,31 @@ export default defineComponent({
     V4,
     G1
   },
-  setup(props, ctx) {
-    const activeList = ref([
-      {
-        id: 1,
-        imgUrl: 'https://pic3.zhimg.com/v2-03371b64a1da395c519938e65965ff61.jpg?source=8c23436a',
-        url: '',
-        time: '2021 年 02 月 19 日 - 2021 年 03 月 19 日'
-      },
-      {
-        id: 2,
-        imgUrl: 'https://pic4.zhimg.com/v2-f93156f6bd568c80d5e2d54833286550.jpg?source=8c23436a',
-        url: '',
-        time: '2021 年 02 月 08 日 - 2021 年 02 月 26 日'
-      },
-      {
-        id: 3,
-        imgUrl: 'https://pic2.zhimg.com/v2-37852e07af93ea1675d8cd50a699f4ff.jpg?source=8c23436a',
-        url: '',
-        time: '2021 年 01 月 18 日 - 2021 年 03 月 18 日'
-      },
-      {
-        id: 4,
-        imgUrl: 'https://pic4.zhimg.com/v2-400ebc21c25b0b7bb0740e6e25a7b1c5.jpg?source=8c23436a',
-        url: '',
-        time: '2021 年 02 月 05 日 - 2021 年 03 月 05 日'
-      },
-      {
-        id: 5,
-        imgUrl: 'https://pic2.zhimg.com/v2-ce896400cea15a93a05bc6b0188b668c.jpg?source=8c23436a',
-        url: '',
-        time: '2021 年 02 月 03 日 - 2021 年 03 月 03 日'
-      },
-      {
-        id: 6,
-        imgUrl: 'https://pic1.zhimg.com/v2-456a0f551ce75a8d5adab52e6413ab1d.jpg?source=8c23436a',
-        url: '',
-        time: '2021 年 02 月 07 日 - 2021 年 02 月 28 日'
-      },
-      {
-        id: 7,
-        imgUrl: 'https://pic4.zhimg.com/v2-a73ecc1ba6adedb07c21b85937560192.jpg?source=8c23436a',
-        url: '',
-        time: '2021 年 02 月 03 日 - 2021 年 02 月 23 日'
-      },
-    ])
+  setup(prop, ctx) {
+    const activeList = ref([])
+    const layout = computed(() => prop.isMobile ? 'prev, pager, next' : 'prev, pager, jumper, next')
     const readStatements = () => {
       ElMessage('敬请期待')
     }
     const toActiveDetail = (item) => {
       ElMessage('敬请期待' + item.id)
     }
+    onMounted(() => {
+      fetchData({})
+    })
+    const fetchData = ({ limit = 10, page = 1 }) => {
+      getActiveList({ limit, page }).then(({ error_code, message, data }) => {
+        if (error_code === 200) {
+          activeList.value = [].concat(data)
+        }
+      })
+    }
     return {
+      layout,
       activeList,
       readStatements,
-      toActiveDetail
+      toActiveDetail,
+      ...pagination(ctx, fetchData, true)
     }
   }
 })

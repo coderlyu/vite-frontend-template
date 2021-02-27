@@ -326,7 +326,7 @@ export default defineComponent({
           display: inline-block;
           font-size: 16px;
           font-weight: 400;
-          color: #666;
+          color: #adadad;
           .label-name {
             display: inline-block;
             width: 100px;

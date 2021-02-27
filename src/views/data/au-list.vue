@@ -1,22 +1,22 @@
 <template>
   <div>
     <el-row :gutter="16">
-      <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="8" v-for="item in 10" :key="item" class="au-mt-16">
+      <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="8" v-for="item in list" :key="item.id" class="au-mt-16">
         <el-card class="box-card">
           <template #header>
             <div class="card-header">
-              <span>品牌任务</span>
+              <span>{{ item.name }}</span>
             </div>
           </template>
           <section class="au-flex list-item">
-            <img src="https://img.alicdn.com/tfs/TB1sbkkXmBYBeNjy0FeXXbnmFXa-280-498.png" alt="活动图片">
+            <img :src="item.imgUrl" alt="活动图片">
             <div class="au-ml-16 item-right">
-              <span class="au-block au-text-line-one">帖子-流行指南</span>
+              <span class="au-block au-text-line-one">{{ item.title }}</span>
               <span class="au-block au-mt-32">文章描述：</span>
-              <p class="au-text-line-two au-mt-32">分享日常的真人穿搭或专业的教程，对时尚有自己的理解，能够给消费者提供时尚搭配心得</p>
+              <p class="au-text-line-two au-mt-32">{{ item.content }}</p>
               <p class="au-mt-32">
                 创作指导： 
-                <a href="javascript: void(0);">好的长文章应该怎么写？</a>
+                <a href="javascript: void(0);">{{ item.link }}</a>
               </p>
             </div>
           </section>
@@ -41,21 +41,21 @@
   </div>
 </template>
 <script>
-import {defineComponent } from 'vue'
-import pagination from '../../components/au-pagination'
+import { defineComponent } from 'vue'
 export default defineComponent({
   props: {
     list: {
       type: Array,
       default: () => []
+    },
+    pagination: {
+      type: Object,
+      default: () => ({})
     }
   },
-  setup(props, ctx) {
-    const fetchData = () => {
-      console.log('发送请求数据')
-    }
+  setup(prop, ctx) {
     return {
-      ...pagination(ctx, fetchData, true)
+      ...prop.pagination
     }
   }
 })

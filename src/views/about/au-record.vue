@@ -1,30 +1,32 @@
 <template>
-  <el-timeline>
-    <el-timeline-item  v-for="item in recordList" :key="item.id" :timestamp="item.date" placement="top">
-      <el-card class="self-card">
-        <p class="au-flex au-flex-column-center au-mt-16 title">
-          <span class="au-in-block au-text-line-one name">{{ item.author }}</span>
-          <small class="operation">{{ item.operation }}</small>
-        </p>
-        <p class="description">
-          <span class="name">{{ item.author}}</span>
-          操作于
-          <small class="time">{{ item.date }} {{ item.time }}</small>
-        </p>
-      </el-card>
-    </el-timeline-item>
-  </el-timeline>
-  <section class="au-text-end">
-    <el-pagination
-      :page-size="limit"
-      :current-page="page"
-      :pager-count="5"
-      :layout="layout"
-      :total="total"
-      @size-change="pageSizeChange"
-      @current-change="currentPageChange"
-    />
-  </section>
+  <div>
+    <el-timeline>
+      <el-timeline-item  v-for="item in recordList" :key="item.id" :timestamp="item.date" placement="top">
+        <el-card class="self-card">
+          <p class="au-flex au-flex-column-center au-mt-16 title">
+            <span class="au-in-block au-text-line-one name">{{ item.author }}</span>
+            <small class="operation">{{ item.operation }}</small>
+          </p>
+          <p class="description">
+            <span class="name">{{ item.author}}</span>
+            操作于
+            <small class="time">{{ item.date }} {{ item.time }}</small>
+          </p>
+        </el-card>
+      </el-timeline-item>
+    </el-timeline>
+    <section class="au-text-end">
+      <el-pagination
+        :page-size="limit"
+        :current-page="page"
+        :pager-count="5"
+        :layout="layout"
+        :total="total"
+        @size-change="pageSizeChange"
+        @current-change="currentPageChange"
+      />
+    </section>
+  </div>
 </template>
 <script>
 import { defineComponent, ref, computed } from 'vue'

@@ -1,7 +1,8 @@
 import { State, UserInfo } from './state';
 import { ActionContext } from 'vuex'
+import { login } from '../api/login'
 import { SET_TOKEN, CLEAR_TOKEN, USER_LOGIN, UPDATE_SCREEN_WIDTH, UPDATE_IS_MOBILE, UPDATE_TOGGLE_TYPE } from './types'
-
+import { PromiseLoginName } from '../plugins/axios'
 export default {
   setToken({ commit }: ActionContext<State, State>, token: string) {
     commit(SET_TOKEN, token)
@@ -9,14 +10,23 @@ export default {
   clearToken({ commit }: ActionContext<State, State>) {
     commit(CLEAR_TOKEN)
   },
-  login({ commit }: ActionContext<State, State>, user: UserInfo) {
+  login({ commit }: ActionContext<State, State>, { username, password }: UserInfo) {
     return new Promise((resolve, reject) => {
-      if (user.username === 'admin' && user.password === 'admin') {
-        commit(USER_LOGIN, user)
-        commit(SET_TOKEN, btoa(user.username.repeat(3) + user.password.repeat(3)))
-        resolve('登录成功')
+      let _query = {
+        username: username.trim(), password: password.trim()
       }
-      reject('登录失败')
+      login(_query).then((res) => {
+        const { error_code, message, token } = res as unknown as PromiseLoginName
+        if (error_code === 200) {
+          commit(USER_LOGIN, _query)
+          commit(SET_TOKEN, token)
+          resolve(message)
+        } else {
+          reject(message)
+        }
+      }).catch((error: unknown) => {
+        reject(error)
+      })
     })
   },
   updetaScreenWidth({ commit }: ActionContext<State, State>, width: number) {

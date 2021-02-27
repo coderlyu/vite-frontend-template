@@ -2,8 +2,8 @@
   <div class="au-bg-white top-header-wrapper">
     <section class="left-title">
       <i v-if="isMobile" class="toggle-icon au-ml-16" :class="toggleClass" @click="toggleClick"></i>
-      <!-- <img src="" alt="logo" class="left-logo"> -->
-      <h1>LOGO</h1>
+      <img v-if="!isMobile" src="../assets/logo.png" alt="logo" class="left-logo">
+      <h1>{{ isMobile ? 'AU' : 'AU IS A PERSON' }}</h1>
     </section>
     <el-dropdown @command="commandClick">
       <span class="el-dropdown-link">
@@ -22,7 +22,7 @@
   </div>
 </template>
 <script>
-import { defineComponent, inject } from 'vue'
+import { defineComponent, inject, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import Screen from './au-screen'
 export default defineComponent({
@@ -46,7 +46,7 @@ export default defineComponent({
           break
         case 'Logout':
           store.dispatch('clearToken').then(() => {
-            router.push('/')
+            router.push({ path: '/login' })
           })
           break
       }
@@ -77,6 +77,7 @@ export default defineComponent({
     }
     .left-logo {
       height: 60px;
+      margin-left: 32px;
     }
     h1 {
       font-family: fantasy;

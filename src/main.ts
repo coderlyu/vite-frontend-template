@@ -11,9 +11,6 @@ import 'element-plus/lib/theme-chalk/display.css';
 // plugins
 import plugins from './plugins'
 
-// permision
-import './router/permision'
-
 createApp(App)
 .use(plugins)
 .mount('#app')

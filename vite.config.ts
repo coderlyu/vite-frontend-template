@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 const mockPlugin = require("vite-plugin-mockit")
 import svgLoader from 'vite-svg-loader'
-import styleImport from 'vite-plugin-style-import' // element-ui 样式按需加载
+import styleImport from 'vite-plugin-style-import'
 
 export default defineConfig({
   plugins: [

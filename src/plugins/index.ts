@@ -5,6 +5,7 @@ import { App } from 'vue'
 import lang from 'element-plus/lib/locale/lang/zh-cn'
 import 'dayjs/locale/zh-cn'
 import locale from 'element-plus/lib/locale'
+
 export default {
   install(vue: App) {
     vue.use(router)

@@ -34,13 +34,15 @@
         </template>
       </el-tab-pane>
     </el-tabs>
-    <au-list :list="list" />
+    <au-list :list="list" :pagination="pagination" />
   </div>
 </template>
 <script>
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, onMounted } from 'vue'
 import AuList from './au-list.vue'
 import Screen from '../../components/au-screen'
+import pagination from '../../components/au-pagination'
+import { getList } from '../../api/data'
 export default defineComponent({
   name: 'Data',
   components: {
@@ -52,12 +54,27 @@ export default defineComponent({
     const { isMobile } = Screen()
     const handleClick = ({ props }) => {
       activeName.value = props.name
+      _pagination.clear()
+      fetchData({})
     }
+    let fetchData = ({ limit = 10, page = 1 }) => {
+      getList({ limit, page }).then(({ error_code, message, data, total }) => {
+        if (error_code === 200) {
+          list.value = [].concat(data)
+          _pagination.changeTotal(total)
+        }
+      })
+    }
+    let _pagination  = pagination(ctx, fetchData, true)
+    onMounted(() => {
+      fetchData({})
+    })
     return {
       isMobile,
       list,
       activeName,
-      handleClick
+      handleClick,
+      pagination: _pagination
     }
   }
 })

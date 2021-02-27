@@ -151,6 +151,7 @@ export default defineComponent({
 @media screen and (max-width: 769px) {
   .login {
     .login-wrapper {
+      padding: 32px 16px;
       width: 95%;
     }
   }

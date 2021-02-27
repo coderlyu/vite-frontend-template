@@ -65,6 +65,20 @@ export default defineComponent({
 })
 </script>
 <style lang="scss" scoped>
+.el-menu-vertical-demo {
+  li {
+    border-left: 3px solid transparent;
+    i {
+      display: inline-block;
+      text-align: left;
+      width: 40px;
+    }
+  }
+  :deep(li.is-active) {
+    background: #f2f8ff;
+    border-left: 3px solid #409EFF;
+  }
+}
 .el-menu {
   max-width: 300px;
   background: #fff;

@@ -4,15 +4,19 @@
       <top-header />
     </el-header>
     <el-row class="self-container">
-      <el-col :xs="24" :sm="8" :md="8" :lg="6" :xl="4" class="hidden-xs-only">
-        <left-nav />
+      <el-col :xs="24" :sm="8" :md="8" :lg="6" :xl="4" class="hidden-xs-only" style="position: relative">
+        <left-nav :style="navComputedStyle" />
       </el-col>
       <el-col :xs="24" :sm="16" :md="16" :lg="18" :xl="20" style="margin-bottom: 16px;">
-        <router-view v-slot="{ Component }">
+        <transition name="fade">
+          <router-view />
+        </transition>
+        <!-- 下面这句可以解决控制台警告信息，但是过渡动画会出现问题 -->
+        <!-- <router-view v-slot="{ Component }">
           <transition name="fade">
             <component :is="Component" />
           </transition>
-        </router-view>
+        </router-view> -->
       </el-col>
     </el-row>
   </el-container>
@@ -24,7 +28,7 @@
   </template>
 </template>
 <script lang="ts">
-import { defineComponent, ComputedRef } from 'vue'
+import { defineComponent, ComputedRef, onMounted, computed, ref } from 'vue'
 import LeftNav from './au-nav.vue'
 import TopHeader from './au-header.vue'
 import Screen from './au-screen'
@@ -39,7 +43,27 @@ export default defineComponent({
       if (!isMobile.value) return ''
       else return closed.value ? 'self-opend' : 'self-closed'
     }
+    const scrollTop = ref(0)
+    const navComputedStyle = computed(() => {
+      let _style = {
+        position: 'absolute',
+        width: '100%',
+        left: '50%',
+        top: `${scrollTop.value}px`,
+        transform: `translateX(-50%)`
+      }
+      return _style
+    })
+    const computeScroll =  (e: any) => {
+      scrollTop.value = e.target.scrollTop
+    }
+    onMounted(() => {
+      let doc = document.getElementById('app')
+      console.log(doc)
+      doc?.addEventListener('scroll', computeScroll)
+    })
     return {
+      navComputedStyle,
       ...Screen(ctx, toggleClass)
     }
   }
@@ -79,20 +103,24 @@ export default defineComponent({
   animation: openToClosed .5s forwards;
 }
 
+.fade-enter-from {
+  transform: translateY(50px);
+}
 .fade-enter-active {
   transition: all .3s ease;
+}
+.fade-enter-to {
+  transform: translateY(0);
+}
+
+.fade-leave-from {
   transform: translateY(0);
 }
 .fade-leave-active {
   transition: all .3s ease;
-  transform: translateY(50px);
-}
-
-.fade-enter-from{
-  transform: translateY(50px);
 }
 .fade-leave-to {
-  transform: translateY(0);
+  transform: translateY(50px);
 }
 
 @keyframes closedToOpen {

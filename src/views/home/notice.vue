@@ -21,9 +21,10 @@
   </section>
 </template>
 <script>
-import { defineComponent, ref, computed } from 'vue'
+import { defineComponent, ref, computed, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
 import pagination from '../../components/au-pagination'
+import { getNoticelist } from '../../api/home'
 export default defineComponent({
   name: 'NoticeList',
   props: {
@@ -34,53 +35,7 @@ export default defineComponent({
   },
   setup(prop, ctx) {
     const layout = computed(() => prop.isMobile ? 'prev, pager, next' : 'prev, pager, jumper, next')
-    const noticeList = ref([
-      {
-        id: 1,
-        tags: [
-          {
-            value: 1,
-            label: 'HOT'
-          },
-          {
-            value: 2,
-            label: 'NEW'
-          }
-        ],
-        content: '【活动入口已开启】活动入口已开启活动入口已开启活动入口已开启',
-        time: '2021/10/02'
-      },
-      {
-        id: 2,
-        tags: [
-          {
-            value: 1,
-            label: 'HOT'
-          },
-          {
-            value: 3,
-            label: '置顶'
-          }
-        ],
-        content: '【创作大赛】创作大赛欢迎你的加入',
-        time: '2021/10/02'
-      },
-      {
-        id: 3,
-        tags: [
-          {
-            value: 1,
-            label: 'HOT'
-          },
-          {
-            value: 2,
-            label: 'NEW'
-          }
-        ],
-        content: '【活动入口已开启】活动入口已开启活动入口已开启活动入口已开启',
-        time: '2021/10/02'
-      }
-    ])
+    const noticeList = ref([])
     const tags = ref([
       'default',
       'success',
@@ -88,8 +43,17 @@ export default defineComponent({
       'warning',
       'danger'
     ])
-    const fetchData = () => {
-      console.log('发送请求数据')
+    onMounted(() => {
+      fetchData({})
+    })
+    const fetchData = ({ limit = 10, page = 1 }) => {
+      getNoticelist({ limit, page }).then(({ error_code, message, data }) => {
+        if (error_code === 200) {
+          noticeList.value = data
+        } else {
+          ElMessage.error(message)
+        }
+      })
     }
     const toDetail = () => {
       ElMessage('敬请期待')

@@ -37,7 +37,7 @@
             <span class="au-block au-text-line-one au-mt-8">新的一年好好干，今年争取再给你盖栋大楼</span>
             <span class="au-block au-text-line-one">你还差1个小时就超过前一位同事的工时了，是否前去处理</span>
           </p>
-          <a href="javascript: void(0);" class="au-mt-8 au-text-end">跳转到详情</a>
+          <el-button type="primary" style="margin-top: 16px;">查看详情</el-button>
         </div>
       </el-col>
     </el-row>
@@ -59,7 +59,7 @@
   </div>
 </template>
 <script>
-import { defineComponent, ref, computed } from 'vue'
+import { defineComponent, ref, computed, onMounted } from 'vue'
 import NoticeList from './notice.vue'
 // svg
 import V1 from '../../icons/svg/v1.svg'
@@ -68,6 +68,7 @@ import V3 from '../../icons/svg/v3.svg'
 import V4 from '../../icons/svg/v4.svg'
 import V5 from '../../icons/svg/v5.svg'
 import Screen from '../../components/au-screen'
+import { getCountlist, getCurrentLevel } from '../../api/home'
 export default defineComponent({
   components: {
     V1,
@@ -80,45 +81,20 @@ export default defineComponent({
   name: 'Home',
   setup(prop, ctx) {
     const { isMobile } = Screen()
-    const counts = ref([
-      {
-        id: 1,
-        title: '昨日阅读总数',
-        icon: 'iconyinzhangrenzheng',
-        num: 120
-      },
-      {
-        id: 2,
-        title: '昨日赞同总数',
-        icon: 'iconhaxi',
-        num: 120
-      },
-      {
-        id: 3,
-        title: '昨日粉丝数',
-        icon: 'iconliuzhuan',
-        num: 120
-      },
-      {
-        id: 4,
-        title: '昨日活跃粉丝数',
-        icon: 'iconqukuai',
-        num: 120
-      },
-      {
-        id: 5,
-        title: '内容健康度',
-        icon: 'iconsuyuan',
-        num: '90分'
-      },
-      {
-        id: 6,
-        title: '昨日收益',
-        icon: 'iconshujuku',
-        num: '92,340.00'
-      }
-    ])
+    const counts = ref([])
     const levelActive = ref(3)
+    onMounted(() => {
+      getCountlist().then(({ error_code, message, data }) => {
+        if (error_code === 200) {
+          counts.value = data
+        }
+      })
+      getCurrentLevel().then(({ error_code, message, data }) => {
+        if (error_code === 200) {
+          levelActive.value = data
+        }
+      })
+    })
     const levelNameActive = computed(() => {
       let styles = {}
       let left = `calc(25% * ${levelActive.value - 1})`
@@ -223,13 +199,6 @@ export default defineComponent({
       & > span:nth-of-type(1) {
         font-size: 14px;
         color: #666;
-      }
-    }
-    a {
-      color: #409EFF;
-      text-decoration: none;
-      &:hover {
-        color: #5ac6f9;
       }
     }
   }
