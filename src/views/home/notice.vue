@@ -43,13 +43,11 @@ export default defineComponent({
       'warning',
       'danger'
     ])
-    onMounted(() => {
-      fetchData({})
-    })
     const fetchData = ({ limit = 10, page = 1 }) => {
-      getNoticelist({ limit, page }).then(({ error_code, message, data }) => {
+      getNoticelist({ limit, page }).then(({ error_code, message, data, total }) => {
         if (error_code === 200) {
           noticeList.value = data
+          _pagination.changeTotal(total)
         } else {
           ElMessage.error(message)
         }
@@ -58,9 +56,10 @@ export default defineComponent({
     const toDetail = () => {
       ElMessage('敬请期待')
     }
+    const _pagination = pagination(ctx, fetchData, true)
     return {
       layout,
-      ...pagination(ctx, fetchData, true),
+      ..._pagination,
       noticeList,
       tags,
       isMobile: prop.isMobile,

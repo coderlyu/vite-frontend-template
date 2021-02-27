@@ -10,7 +10,15 @@ export function getActiveList(params: unknown) {
 
 export function getMessageList(params: unknown) {
   return request({
-    url: '/about/message',
+    url: '/about/messages',
+    method: 'get',
+    params
+  })
+}
+
+export function getRecordList(params: unknown) {
+  return request({
+    url: '/about/records',
     method: 'get',
     params
   })

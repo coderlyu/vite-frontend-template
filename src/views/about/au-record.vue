@@ -31,6 +31,7 @@
 <script>
 import { defineComponent, ref, computed } from 'vue'
 import pagination from '../../components/au-pagination'
+import { getRecordList } from '../../api/about'
 export default defineComponent({
   name: 'AuRecord',
   props: {
@@ -41,42 +42,17 @@ export default defineComponent({
   },
   setup(prop, ctx) {
     const layout = computed(() => prop.isMobile ? 'prev, pager, next' : 'prev, pager, jumper, next')
-    const recordList = ref([
-      {
-        id: 1,
-        date: '2018/4/12',
-        time: '20:46:09',
-        author: 'coderly',
-        operation: '修改密码'
-      },
-      {
-        id: 2,
-        date: '2018/4/12',
-        time: '20:46:09',
-        author: '立方体转移工程师',
-        operation: '添加系统管理员'
-      },
-      {
-        id: 3,
-        date: '2018/4/12',
-        time: '20:46:09',
-        author: '空间物质转移监督员',
-        operation: '发布作品'
-      },
-      {
-        id: 4,
-        date: '2018/4/12',
-        time: '20:46:09',
-        author: '黑白黄的猫',
-        operation: '删除管理员'
-      }
-    ])
-    const fetchData = () => {
-      console.log('发送请求数据')
+    const fetchData = ({ limit, page }) => {
+      getRecordList({ limit, page }).then(({ data, total }) => {
+        recordList.value = [].concat(data)
+        _pagination.changeTotal(total)
+      })
     }
+    const _pagination = pagination(ctx, fetchData, true)
+    const recordList = ref([])
     return {
       layout,
-      ...pagination(ctx, fetchData, true),
+      ..._pagination,
       recordList
     }
   },

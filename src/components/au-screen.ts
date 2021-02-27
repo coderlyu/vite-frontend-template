@@ -11,7 +11,7 @@ export default function screen(ctx?: SetupContext, callback?: (m: ComputedRef, c
   let toggleClass = computed(() => {
     if(typeof callback === 'function') return callback(isMobile, closed)
     else if (!isMobile.value) return ''
-    else return closed.value ? 'self-opend' : 'self-closed'
+    else return closed.value ? 'el-icon-s-unfold' : 'el-icon-s-fold'
   })
   
   return {

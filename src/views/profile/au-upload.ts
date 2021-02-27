@@ -11,7 +11,6 @@ export function uploadState(ctx: SetupContext) {
     const reader = new FileReader()
     reader.onload = function(ev){
       tempUrl.value = ev!.target!.result as string
-      console.log(tempUrl.value)
       confirmAvatarVisible.value = true
     }
     reader.readAsDataURL(file)

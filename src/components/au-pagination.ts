@@ -1,4 +1,4 @@
-import { AppContext, ref, watch } from 'vue'
+import { AppContext, ref, watch, onMounted } from 'vue'
 
 export default function pagination(ctx?: AppContext, callback?: (v: unknown) => unknown, autoFetch: boolean = false) {
   const limit = ref(10)
@@ -39,6 +39,16 @@ export default function pagination(ctx?: AppContext, callback?: (v: unknown) => 
       return
     }
     if (typeof callback === 'function') {
+      callback({
+        limit: limit.value,
+        page: page.value,
+        total: total.value
+      })
+    }
+  })
+
+  onMounted(() => {
+    if(autoFetch && typeof callback === 'function') {
       callback({
         limit: limit.value,
         page: page.value,

@@ -19,158 +19,52 @@
           </el-upload>
         </section>
         <ul class="info-wrapper">
-          <li class="base-info">
-            <section>
-              <h4 class="label" v-if="!visibles[0]">
-                {{ formData.nick }}
-                <a href="#" @click="showItemEdit(0, $event, true, 'nick')">
+          <li class="au-flex au-flex-column-center au-flex-bt">
+            <section class="au-flex au-flex-column-center">
+              <span class="label">
+                <span class="au-in-block label-name" :class="!visibles[0] ? 'nick-active' : ''"> {{ visibles[0] ? '用户名' : formData.nick }} </span>
+                <a
+                  v-if="!visibles[0]"
+                  href="#"
+                  @click="showItemEdit(0, $event, true, 'nick')"
+                >
                   <i class="el-icon-edit"></i>
                   修改
                 </a>
-              </h4>
-              <h4 v-if="visibles[0]">用户名</h4>
-              <div v-if="visibles[0]" class="edit-wrapper">
-                <el-input
-                  v-model="formData.tempData"
-                  placeholder="请输入昵称"
-                ></el-input>
-                <section>
-                  <el-button
-                    size="medium"
-                    type="primary"
-                    @click="saveItem(0, 'nick')"
-                    >保 存</el-button
-                  >
-                  <el-button size="medium" @click="showItemEdit(0, $event)"
-                    >取 消</el-button
-                  >
-                </section>
-              </div>
+              </span>
+              <au-input
+                v-if="visibles[0]"
+                v-bind:value="formData.nick"
+                :config="configs.nick"
+                @showItemEdit="showItemEdit(0)"
+                @saveItem="saveItem($event, 0)"
+              />
             </section>
-            <a href="#" @click="goBack">
+            <a href="#" class="au-in-block au-text-center" @click="goBack">
               返回主页
               <i class="el-icon-caret-right"></i>
             </a>
           </li>
-          <li>
-            <section>
-              <h4 class="label" v-if="!visibles[1]">
-                <span class="label-name">性别</span>
-                {{ formData.sex ? formData.sex : '未知' }}
-                <a href="#" @click="showItemEdit(1, $event, true, 'sex')">
-                  <i class="el-icon-edit"></i>
-                  修改
-                </a>
-              </h4>
-              <h4 v-if="visibles[1]">性别</h4>
-              <div v-if="visibles[1]" class="edit-wrapper">
-                <el-radio-group v-model="formData.tempData">
-                  <el-radio label="男">男</el-radio>
-                  <el-radio label="女">女</el-radio>
-                </el-radio-group>
-                <section>
-                  <el-button
-                    size="medium"
-                    type="primary"
-                    @click="saveItem(1, 'sex')"
-                    >保 存</el-button
-                  >
-                  <el-button size="medium" @click="showItemEdit(1, $event)"
-                    >取 消</el-button
-                  >
-                </section>
-              </div>
-            </section>
-          </li>
-          <li>
-            <section>
-              <h4 class="label" v-if="!visibles[2]">
-                <span class="label-name">一句话介绍</span>
-                {{ formData.intro }}
-                <a href="#" @click="showItemEdit(2, $event, true, 'intro')">
-                  <i class="el-icon-edit"></i>
-                  修改
-                </a>
-              </h4>
-              <h4 v-if="visibles[2]">一句话介绍</h4>
-              <div v-if="visibles[2]" class="edit-wrapper">
-                <el-input
-                  v-model="formData.tempData"
-                  placeholder="请输入一句话介绍"
-                ></el-input>
-                <section>
-                  <el-button
-                    size="medium"
-                    type="primary"
-                    @click="saveItem(2, 'intro')"
-                    >保 存</el-button
-                  >
-                  <el-button size="medium" @click="showItemEdit(2, $event)"
-                    >取 消</el-button
-                  >
-                </section>
-              </div>
-            </section>
-          </li>
-          <li>
-            <section>
-              <h4 class="label" v-if="!visibles[3]">
-                <span class="label-name">所在行业</span>
-                {{ formData.work }}
-                <a href="#" @click="showItemEdit(3, $event, true, 'work')">
-                  <i class="el-icon-edit"></i>
-                  修改
-                </a>
-              </h4>
-              <h4 v-if="visibles[3]">所在行业</h4>
-              <div v-if="visibles[3]" class="edit-wrapper">
-                <el-input
-                  v-model="formData.tempData"
-                  placeholder="请输入所在行业"
-                ></el-input>
-                <section>
-                  <el-button
-                    size="medium"
-                    type="primary"
-                    @click="saveItem(3, 'work')"
-                    >保 存</el-button
-                  >
-                  <el-button size="medium" @click="showItemEdit(3, $event)"
-                    >取 消</el-button
-                  >
-                </section>
-              </div>
-            </section>
-          </li>
-          <li>
-            <section>
-              <h4 class="label" v-if="!visibles[4]">
-                <span class="label-name">个人简介</span>
-                {{ formData.mark }}
-                <a href="#" @click="showItemEdit(4, $event, true, 'mark')">
-                  <i class="el-icon-edit"></i>
-                  修改
-                </a>
-              </h4>
-              <h4 v-if="visibles[4]">个人简介</h4>
-              <div v-if="visibles[4]" class="edit-wrapper">
-                <el-input
-                  v-model="formData.tempData"
-                  placeholder="请输入个人简介"
-                ></el-input>
-                <section>
-                  <el-button
-                    size="medium"
-                    type="primary"
-                    @click="saveItem(4, 'mark')"
-                    >保 存</el-button
-                  >
-                  <el-button size="medium" @click="showItemEdit(4, $event)"
-                    >取 消</el-button
-                  >
-                </section>
-              </div>
-            </section>
+          <li class="au-flex au-flex-column-center" v-for="(item, index) in columns" :key="index">
+            <span class="label">
+              <span class="au-in-block label-name">{{ item.label }}</span>
+              {{ visibles[index + 1] ? '' : (
+                item.props === 'sex' ? (formData[item.props] ? formData[item.props] : '未知') :
+                formData[item.props]
+              ) }}
+              <a v-if="!visibles[index + 1]" href="#" @click="showItemEdit(index + 1, $event, true, item.props)">
+                <i class="el-icon-edit"></i>
+                修改
+              </a>
+            </span>
+            <au-input
+              v-if="visibles[index + 1]"
+              v-bind:value="formData[item.props]"
+              class="edit-wrapper"
+              :config="configs[item.props]"
+              @showItemEdit="showItemEdit(index + 1)"
+              @saveItem="saveItem($event, index + 1)"
+            />
           </li>
         </ul>
       </section>
@@ -198,9 +92,15 @@ import { defineComponent, reactive } from 'vue'
 import { cloneDeep } from 'lodash'
 import { useRouter } from 'vue-router'
 import { uploadState } from './au-upload'
+import AuInput from '../../components/au-input.vue'
+import _config from './config'
 export default defineComponent({
   name: 'ProfilePc',
+  components: {
+    AuInput,
+  },
   setup(prop, ctx) {
+    let _conf = _config({})
     const router = useRouter()
     const visibles = reactive(new Array(10).fill(false))
     const formData = reactive({
@@ -216,16 +116,12 @@ export default defineComponent({
       router.push({ name: 'Home' })
     }
     const showItemEdit = (index, e, flag = false, type) => {
-      e.preventDefault()
       visibles.fill(false) // 关闭其它编辑框
-      if (flag) {
-        formData.tempData = cloneDeep(formData[type])
-      }
       visibles[index] = flag
     }
-    const saveItem = (index, type) => {
+    const saveItem = ({ prop, value }, index) => {
       visibles[index] = false
-      formData[type] = cloneDeep(formData.tempData)
+      formData[prop] = cloneDeep(value)
     }
     return {
       ...uploadState(ctx),
@@ -234,6 +130,8 @@ export default defineComponent({
       goBack,
       showItemEdit,
       saveItem,
+      configs: _conf.config,
+      columns: _conf.columns
     }
   },
 })
@@ -292,78 +190,47 @@ export default defineComponent({
     .info-wrapper {
       margin-left: 250px;
       li {
-        display: flex;
-        align-items: center;
         height: 120px;
         border-bottom: 1px solid #ebebeb;
-        &:nth-of-type(1) {
-          border-bottom: none;
-        }
         a {
+          opacity: 0;
           color: #777;
           font-weight: 200;
           text-decoration: none;
-          &:hover {
-            color: #409eff;
-          }
         }
-        .edit-wrapper {
-          display: flex;
-          width: 300px;
-          overflow: hidden;
-          flex-direction: column;
-          justify-content: space-evenly;
-          margin-left: 32px;
-          section {
-            margin-top: 8px;
-          }
-        }
-        & > section {
-          display: flex;
-          align-items: center;
+        & > a {
+          opacity: 1;
+          width: 100px;
         }
         .label {
-          display: inline-block;
-          font-size: 16px;
-          font-weight: 400;
           color: #adadad;
           .label-name {
-            display: inline-block;
             width: 100px;
             font-size: 16px;
             font-weight: 400;
             color: #000;
           }
-          a {
-            font-size: 16px;
-            color: #0fbcf9;
-            opacity: 0;
+          .nick-active {
+            font-size: 20px;
             font-weight: 600;
-            transition: all 0.35s;
-            &:hover {
-              color: #0fbcf9;
-            }
-          }
-          &:hover {
-            a {
-              opacity: 1;
-              color: #0fbcf9;
-            }
+            font-family: fantasy;
+            color: #000;
           }
         }
-      }
-      .base-info {
-        display: flex;
-        justify-content: space-between;
-        font-size: 16px;
-        height: 100px;
-        .label {
-          font-size: 30px;
-          color: #000;
-          font-weight: 600;
+        .edit-wrapper {
+          flex: 1;
         }
-        a {
-          margin-right: 16px;
+        &:nth-of-type(1) {
+          border-bottom: none;
+        }
+        &:hover {
+          a {
+            opacity: 1;
+            color: #0fbcf9;
+          }
+          & > a {
+            color: #777;
+          }
         }
       }
     }
@@ -379,4 +246,8 @@ export default defineComponent({
     height: 200px;
   }
 }
+.au-flex-bt {
+  justify-content: space-between;
+}
+
 </style>

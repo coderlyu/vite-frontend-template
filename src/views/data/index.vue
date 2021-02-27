@@ -38,7 +38,7 @@
   </div>
 </template>
 <script>
-import { defineComponent, ref, onMounted } from 'vue'
+import { defineComponent, ref } from 'vue'
 import AuList from './au-list.vue'
 import Screen from '../../components/au-screen'
 import pagination from '../../components/au-pagination'
@@ -66,9 +66,6 @@ export default defineComponent({
       })
     }
     let _pagination  = pagination(ctx, fetchData, true)
-    onMounted(() => {
-      fetchData({})
-    })
     return {
       isMobile,
       list,

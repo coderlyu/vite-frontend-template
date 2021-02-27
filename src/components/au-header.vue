@@ -30,29 +30,27 @@ export default defineComponent({
   setup(prop, ctx) {
     const router = useRouter()
     const { store } = inject('Store')
-    const toggleClass = (isMobile, closed) => {
-      return closed.value ?  'el-icon-s-unfold' : 'el-icon-s-fold'
-    }
     const commandClick = (type) => {
-      switch (type) {
-        case 'Home':
+      const _c = {
+        Home() {
           router.push({ name: 'Home' })
-          break
-        case 'Data':
+        },
+        Data() {
           router.push({ name: 'Data' })
-          break
-        case 'Setting':
+        },
+        Setting() {
           console.log('Setting')
-          break
-        case 'Logout':
+        },
+        Logout() {
           store.dispatch('clearToken').then(() => {
             router.push({ path: '/login' })
           })
-          break
+        }
       }
+      typeof _c[type] === 'function' && _c(type)()
     }
     return {
-     ...Screen(ctx, toggleClass),
+     ...Screen(ctx),
       commandClick
     }
   },
@@ -72,6 +70,7 @@ export default defineComponent({
     display: flex;
     align-items: center;
     .toggle-icon {
+      color: #409EFF;
       font-size: 25px;
       cursor: pointer;
     }

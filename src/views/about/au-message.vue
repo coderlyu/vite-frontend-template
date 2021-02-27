@@ -13,7 +13,7 @@
     </el-tabs>
     <ul>
       <li class="au-flex au-flex-column-center" :class="{ 'au-mt-8' : isMobile, 'special': activeName === 'unVisite' }" v-for="(item) in list" :key="item.id">
-        <p :class="isMobile ? 'au-text-line-two' : 'au-text-line-one'" @click="toNoticeDetail(i)">
+        <p :class="isMobile ? 'au-text-line-two' : 'au-text-line-one'" @click="toNoticeDetail(item.id)">
           <span v-if="item.label">{{ item.label }}</span>
           {{ item.title }}
         </p>
@@ -50,7 +50,8 @@
   </div>
 </template>
 <script>
-import { defineComponent, ref, computed, onMounted } from 'vue'
+import { defineComponent, ref, computed } from 'vue'
+import { ElMessage } from 'element-plus'
 import pagination from '../../components/au-pagination'
 import { getMessageList } from '../../api/about'
 export default defineComponent({
@@ -80,18 +81,17 @@ export default defineComponent({
       fetchData({})
     }
     const toNoticeDetail = (i) => {
-      console.log(i)
+      ElMessage('敬请期待' + i)
     }
     const fetchData = ({ limit = 10, page = 1 }) => {
-      getMessageList({ limit, page }).then(({ error_code, data }) => {
+      getMessageList({ limit, page }).then(({ error_code, data, total }) => {
         if (error_code === 200) {
           list.value = [].concat(data)
+          _pagination.changeTotal(total)
         }
       })
     }
-    onMounted(() => {
-      fetchData({})
-    })
+    const _pagination = pagination(ctx, fetchData, true)
     return {
       list,
       layout,
@@ -99,7 +99,7 @@ export default defineComponent({
       toNoticeDetail,
       handleTabClick,
       isMobile: prop.isMobile,
-      ...pagination(ctx, fetchData, true)
+      ..._pagination
     }
   },
 })

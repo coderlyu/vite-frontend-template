@@ -11,7 +11,7 @@
         <transition name="fade">
           <router-view />
         </transition>
-        <!-- 下面这句可以解决控制台警告信息，但是过渡动画会出现问题 -->
+        <!-- ↑↑↑ 下面这句可以解决控制台警告信息，但是过渡动画会出现问题 ↑↑↑ -->
         <!-- <router-view v-slot="{ Component }">
           <transition name="fade">
             <component :is="Component" />
@@ -59,7 +59,6 @@ export default defineComponent({
     }
     onMounted(() => {
       let doc = document.getElementById('app')
-      console.log(doc)
       doc?.addEventListener('scroll', computeScroll)
     })
     return {

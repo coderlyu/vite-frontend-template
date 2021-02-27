@@ -104,22 +104,21 @@ export default defineComponent({
     const toActiveDetail = (item) => {
       ElMessage('敬请期待' + item.id)
     }
-    onMounted(() => {
-      fetchData({})
-    })
     const fetchData = ({ limit = 10, page = 1 }) => {
-      getActiveList({ limit, page }).then(({ error_code, message, data }) => {
+      getActiveList({ limit, page }).then(({ error_code, total, data }) => {
         if (error_code === 200) {
           activeList.value = [].concat(data)
+          _pagination.changeTotal(total)
         }
       })
     }
+    const _pagination = pagination(ctx, fetchData, true)
     return {
       layout,
       activeList,
       readStatements,
       toActiveDetail,
-      ...pagination(ctx, fetchData, true)
+      ..._pagination
     }
   }
 })
