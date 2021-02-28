@@ -25,6 +25,6 @@ This template should help get you started developing with Vue 3 and Typescript a
 ![wl-mfe](https://github.com/coderlyu/vite-frontend-template/blob/master/pictures/4.png)
 ![wl-mfe](https://github.com/coderlyu/vite-frontend-template/blob/master/pictures/5.png)
 
-# How to start
+# Start
 1. `npm install`
 2. `npm run dev`
