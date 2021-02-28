@@ -4,7 +4,7 @@
       <img src="../../assets/images/profile.jpg" alt="头像" class="avatar">
       <div class="au-flex au-ml-16 au-overflow-hidden avatar-right">
         <span class="au-text-line-one">coderly</span>
-        <a href="javascript: void(0);" class="au-text-center">返回主页<i class="el-icon-arrow-right"></i></a>
+        <a href="javascript: void(0);" class="au-text-center" @click="toHome">返回主页<i class="el-icon-arrow-right"></i></a>
       </div>
     </section>
     <ul class="au-mt-32">
@@ -42,6 +42,7 @@
 <script>
 import { defineComponent, reactive  } from 'vue'
 import { ElMessage } from 'element-plus'
+import { useRouter } from 'vue-router'
 export default defineComponent({
   name: 'ProfileMobile',
   setup(prop, ctx) {
@@ -56,9 +57,14 @@ export default defineComponent({
     const toEdit = (index) => {
       ElMessage('敬请期待' + index)
     }
+    const router = useRouter()
+    const toHome = () => {
+      router.push('/')
+    }
     return {
       formData,
-      toEdit
+      toEdit,
+      toHome
     }
   }
 })

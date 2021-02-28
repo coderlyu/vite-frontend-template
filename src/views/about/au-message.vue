@@ -19,20 +19,20 @@
         </p>
         <small class="time">{{ item.time }}</small>
         <small class="operate" v-if="isMobile">
-          <i v-if="activeName === 'unVisite'" class="el-icon-folder-checked icon-success" ></i>
+          <i v-if="activeName === 'unVisite'" class="el-icon-folder-checked icon-success" @click="clickOperate('visited', item)"></i>
           <el-tooltip class="item" effect="dark" content="删除" placement="top-end" v-if="activeName === 'visited'">
-            <i class="el-icon-delete" ></i>
+            <i class="el-icon-delete" @click="clickOperate('delete', item)"></i>
           </el-tooltip>
-          <i v-if="activeName === 'recycle'" class="el-icon-refresh-right icon-grey"></i>
-          <i v-if="activeName === 'recycle'" class="el-icon-folder-delete"></i>
+          <i v-if="activeName === 'recycle'" class="el-icon-refresh-right icon-grey"  @click="clickOperate('reduction', item)"></i>
+          <i v-if="activeName === 'recycle'" class="el-icon-folder-delete"  @click="clickOperate('destroy', item)"></i>
         </small>
         <small class="operate" v-else>
-          <el-button v-if="activeName === 'unVisite'" size="small">标为已读</el-button>
+          <el-button v-if="activeName === 'unVisite'" size="small" @click="clickOperate('visited', item)">标为已读</el-button>
           <el-tooltip class="item" effect="dark" content="删除" placement="top-end" v-if="activeName === 'visited'">
-            <el-button type="danger" size="small">删 除</el-button>
+            <el-button type="danger" size="small" @click="clickOperate('delete', item)">删 除</el-button>
           </el-tooltip>
-          <el-button v-if="activeName === 'recycle'" size="small">还 原</el-button>
-          <el-button v-if="activeName === 'recycle'" type="danger" size="small">销 毁</el-button>
+          <el-button v-if="activeName === 'recycle'" size="small"  @click="clickOperate('reduction', item)">还 原</el-button>
+          <el-button v-if="activeName === 'recycle'" type="danger" size="small" @click="clickOperate('destroy', item)">销 毁</el-button>
         </small>
       </li>
     </ul>
@@ -91,6 +91,22 @@ export default defineComponent({
         }
       })
     }
+    const clickOperate = (type, item) => {
+      switch (type) {
+        case 'delete': // 删除
+          ElMessage.error('删除' + item.id)
+        break
+        case 'visited': // 标为已读
+          ElMessage('标为已读' + item.id)
+        break
+        case 'destroy': // 销毁
+           ElMessage.warning('销毁' + item.id)
+        break
+        case 'reduction': // 还原
+           ElMessage.success('还原' + item.id)
+        break
+      }
+    }
     const _pagination = pagination(ctx, fetchData, true)
     return {
       list,
@@ -99,7 +115,8 @@ export default defineComponent({
       toNoticeDetail,
       handleTabClick,
       isMobile: prop.isMobile,
-      ..._pagination
+      ..._pagination,
+      clickOperate
     }
   },
 })
@@ -184,7 +201,7 @@ ul {
       }
       .time {
         width: 120px;
-        top: -4px;
+        top: 0px;
         right: 0;
         position: absolute;
       }

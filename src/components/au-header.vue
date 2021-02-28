@@ -3,7 +3,7 @@
     <section class="left-title">
       <i v-if="isMobile" class="toggle-icon au-ml-16" :class="toggleClass" @click="toggleClick"></i>
       <img v-if="!isMobile" src="../assets/logo.png" alt="logo" class="left-logo">
-      <h1>{{ isMobile ? 'AU' : 'AU IS A PERSON' }}</h1>
+      <h1 @click="router.push('/')">{{ isMobile ? 'AU' : 'AU IS A PERSON' }}</h1>
     </section>
     <el-dropdown @command="commandClick">
       <span class="el-dropdown-link">
@@ -51,7 +51,8 @@ export default defineComponent({
     }
     return {
      ...Screen(ctx),
-      commandClick
+      commandClick,
+      router
     }
   },
 })

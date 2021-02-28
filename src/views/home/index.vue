@@ -45,8 +45,8 @@
       <el-col :xs="12" :sm="12" :md="8" :lg="6" :xl="4" v-for="item in counts" :key="item.id" class="au-mt-16">
         <section class="home-count">
           <i class="iconfont self-icon" :class="item.icon"></i>
-          <section style="flex: 1;">
-            <p class="title">{{ item.title }}</p>
+          <section class="au-overflow-hidden" style="flex: 1;">
+            <p class="au-text-line-one title">{{ item.title }}</p>
             <small class="au-in-block count">{{ item.num }}</small>
           </section>
         </section>

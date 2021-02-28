@@ -23,5 +23,10 @@ router.beforeEach((to, from, next) => {
 
 router.afterEach((to, from) => {
   NProgress.done()
+  const isMobile = store.state.isMobile
+  const closed = store.state.toggleClosed
+  if (isMobile && !closed) {
+    store.dispatch('updateToggleType', true)
+  }
   document!.title = to?.meta?.title as string + '-后台管理模板' || '后台管理模板'
 })

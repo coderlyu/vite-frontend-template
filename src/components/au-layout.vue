@@ -3,11 +3,11 @@
     <el-header>
       <top-header />
     </el-header>
-    <el-row :gutter="16" class="self-container" style="margin-right: 0px;">
+    <el-row class="self-container">
       <el-col :xs="24" :sm="8" :md="8" :lg="6" :xl="4" class="hidden-xs-only" style="position: relative">
         <left-nav :style="navComputedStyle" />
       </el-col>
-      <el-col :xs="24" :sm="16" :md="16" :lg="18" :xl="20" style="margin-bottom: 16px;">
+      <el-col :xs="24" :sm="16" :md="16" :lg="18" :xl="20" class="au-overflow-hidden" style="margin-bottom: 16px;">
         <transition name="fade">
           <router-view />
         </transition>
@@ -21,7 +21,7 @@
     </el-row>
   </el-container>
   <template v-if="isMobile">
-    <div class="au-bg-white mobile-nav" :class="toggleClass">
+    <div class="au-overflow-hidden au-bg-white mobile-nav" :class="toggleClass">
       <left-nav />
     </div>
     <div v-if="isMobile && !closed" class="mobile-mark" @click="toggleClick" />

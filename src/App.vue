@@ -1,15 +1,16 @@
 <template>
   <router-view />
-  <el-backtop target="#app" :bottom="50" />
+  <el-backtop target="#app" :bottom="isMobile ? 30 : 50" :right="isMobile ? 15 : 40"/>
 </template>
 <script>
-import { defineComponent, provide, onMounted, onUnmounted } from 'vue'
+import { defineComponent, provide, onMounted, onUnmounted, computed } from 'vue'
 import { getStore } from './store/index'
 export default defineComponent({
   name: 'App',
   setup() {
     provide('Store',  getStore())
     const { store } = getStore()
+    const isMobile = computed(() => store.getters.isMobile)
     let timer = null
     const resize = (e) => {
       const width = document.documentElement.clientWidth || document.body.clientWidth
@@ -27,6 +28,9 @@ export default defineComponent({
       if (timer) clearTimeout(timer)
       window.removeEventListener('resize', resize)
     })
+    return {
+      isMobile
+    }
   }
 })
 </script>
