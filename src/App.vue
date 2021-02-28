@@ -14,9 +14,10 @@ export default defineComponent({
     let timer = null
     const resize = (e) => {
       const width = document.documentElement.clientWidth || document.body.clientWidth
-      if (timer) clearTimeout(timer)
+      if (timer) return
       timer = setTimeout(() => {
         store.dispatch('updetaScreenWidth', width)
+        timer = null
       }, 100)
     }
     onMounted(() => {
