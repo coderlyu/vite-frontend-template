@@ -47,7 +47,7 @@ export default defineComponent({
           })
         }
       }
-      typeof _c[type] === 'function' && _c(type)()
+      typeof _c[type] === 'function' && _c[type]()
     }
     return {
      ...Screen(ctx),

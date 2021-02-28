@@ -3,7 +3,7 @@ const _ = require('./utils/index')
 
 module.exports = {
   'POST /api/user/login': async function (req, res) {
-    const body = await getPostData(req, res)
+    const body = await _.getPostData(req, res)
     const { username = '', password = '', sign = '' } = body || {}
     let newBody = JSON.parse(JSON.stringify(body))
     delete newBody.sign

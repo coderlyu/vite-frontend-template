@@ -1,3 +1,4 @@
+const md5 = require('js-md5')
 const querystring = require('querystring')
 function sign(data) {
   var newkey = Object.keys(data).sort()
