@@ -23,6 +23,13 @@
     "后台管理模板",
     "管理"
   ],
+  "description": "a front end template development by vue3.x and typescript and vite2.x and vuex4.x and vue-router 4.x and mock and element-plus",
+  "main": "./src/main.ts",
+  "license": "MIT",
+  "author": {
+    "name" : "刘誉",
+    "email" : "974257574@qq.com"
+  },
   "scripts": {
     "dev": "vite --mode development",
     "build": "vite build --mode production",
