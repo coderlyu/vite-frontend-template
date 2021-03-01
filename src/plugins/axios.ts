@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from 'axios'
 import qs from 'qs'
 import _sign from '../utils/_sign'
 const request = axios.create({
-  baseURL: '/api',
+  baseURL: '/au/api',
   timeout: 10000,
   transformRequest: [function (data) {
     const d = qs.stringify(data)
