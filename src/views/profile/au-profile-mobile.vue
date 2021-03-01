@@ -48,7 +48,7 @@ export default defineComponent({
   setup(prop, ctx) {
     const formData = reactive({
       nick: 'coderly',
-      sex: '',
+      sex: '男',
       intro: '变秃了也变强了',
       work: '互联网',
       mark: '代码是写给人看的，顺便在机器上运行',
