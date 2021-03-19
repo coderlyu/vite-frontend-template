@@ -27,8 +27,8 @@
   "main": "./src/main.ts",
   "license": "MIT",
   "author": {
-    "name" : "刘誉",
-    "email" : "974257574@qq.com"
+    "name": "刘誉",
+    "email": "974257574@qq.com"
   },
   "scripts": {
     "dev": "vite --mode development",
@@ -37,8 +37,13 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "codemirror": "^5.59.4",
+    "diff": "^5.0.0",
+    "diff-match-patch": "^1.0.5",
+    "diff2html": "^3.2.0",
     "echarts": "^5.0.2",
     "element-plus": "^1.0.2-beta.32",
+    "highlight.js": "^10.6.0",
     "lodash": "^4.17.21",
     "nprogress": "^0.2.0",
     "vite-plugin-mockit": "^1.0.1",

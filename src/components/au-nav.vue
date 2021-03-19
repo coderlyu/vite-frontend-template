@@ -23,6 +23,14 @@
           <template #title>实时信息</template>
         </el-menu-item>
       </el-submenu>
+      <el-menu-item index="CodeDiff">
+        <i class="el-icon-s-order"></i>
+        <template #title>文本差异</template>
+      </el-menu-item>
+      <el-menu-item index="ListScroll">
+        <i class="el-icon-s-order"></i>
+        <template #title>滚动回弹</template>
+      </el-menu-item>
       <el-menu-item index="About">
         <i class="el-icon-s-order"></i>
         <template #title>关于</template>

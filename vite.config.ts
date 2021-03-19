@@ -8,11 +8,11 @@ export default defineConfig({
   root: process.cwd(),
   server: {
     open: false,
-    port: 3030,
+    port: 3010,
     strictPort: true,
     proxy: {
       '/au': {
-        target: `http://localhost:3030`,
+        target: `http://localhost:3010`,
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/au/, '')
       }
@@ -20,6 +20,11 @@ export default defineConfig({
   },
   publicDir: 'public',
   logLevel: 'error',
+  build: {
+    minify: 'esbuild',
+    sourcemap: false,
+    assetsInlineLimit: 8192
+  },
   plugins: [
     vue(),
     styleImport({

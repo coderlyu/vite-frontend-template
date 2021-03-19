@@ -69,6 +69,26 @@ const routes: Array<RouteRecordRaw> = [
           },
         ],
       },
+      {
+        path: 'codeDiff',
+        name: 'CodeDiff',
+        component: () =>
+          import(/* webpackChunkName: 'codeDiff' */ '../views/diff/index.vue'),
+        meta: {
+          title: '文本差异',
+        },
+      },
+      {
+        path: 'listScroll',
+        name: 'ListScroll',
+        component: () =>
+          import(
+            /* webpackChunkName: 'listScroll' */ '../views/scroll/index.vue'
+          ),
+        meta: {
+          title: '滚动回弹',
+        },
+      },
     ],
   },
   {
