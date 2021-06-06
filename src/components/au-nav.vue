@@ -1,5 +1,5 @@
 <template>
-  <div class="left-nav-wrapper">
+  <div :class="isMobile ? 'mobile-left-nav-wrapper' : 'left-nav-wrapper'">
     <el-menu
       :default-active="defaultActive"
       class="el-menu-vertical-demo"
@@ -39,6 +39,12 @@ import { defineComponent, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 export default defineComponent({
   name: 'LeftNav',
+  props: {
+    isMobile: {
+      type: Boolean,
+      default: false
+    }
+  },
   setup(prop, ctx) {
     const route = useRoute()
     const router = useRouter()
@@ -80,5 +86,10 @@ export default defineComponent({
   padding-top: 32px;
   display: flex;
   justify-content: center;
+}
+.mobile-left-nav-wrapper {
+  display: flex;
+  overflow-y: auto;
+  height: 100%;
 }
 </style>

@@ -22,7 +22,7 @@
   </el-container>
   <template v-if="isMobile">
     <div class="au-overflow-hidden au-bg-white mobile-nav" :class="toggleClass">
-      <left-nav />
+      <left-nav :isMobile="isMobile" />
     </div>
     <div v-if="isMobile && !closed" class="mobile-mark" @click="toggleClick" />
   </template>
@@ -44,7 +44,7 @@ export default defineComponent({
       else return closed.value ? 'self-opend' : 'self-closed'
     }
     const scrollTop = ref(0)
-    const doc = ref(null)
+    const doc = ref<HTMLElement>()
     const navComputedStyle = computed(() => {
       let _style = {
         position: 'absolute',
@@ -61,7 +61,7 @@ export default defineComponent({
     onMounted(() => {
       let _dc = document.getElementById('app')
       if (_dc) {
-        doc.value = _dc 
+        doc.value = _dc
         doc.value?.addEventListener('scroll', computeScroll)
       }
     })

@@ -4,7 +4,7 @@
 </template>
 <script>
 import { defineComponent, provide, onMounted, onUnmounted, computed } from 'vue'
-import { getStore } from './store/index'
+import { getStore } from '@/store/index'
 export default defineComponent({
   name: 'App',
   setup() {
