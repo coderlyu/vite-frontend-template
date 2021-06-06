@@ -2,7 +2,7 @@
   <div>
     <div class="profile-wrapper">
       <section class="top">
-        <img src="../../assets/images/bg.jpg" alt="背景图片" class="bg-img" />
+        <img src="../../assets/images/bg.jpeg" alt="背景图片" class="bg-img" />
       </section>
       <section class="body">
         <section class="upload-wrapper">

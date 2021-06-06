@@ -1,9 +1,10 @@
 import request from '../plugins/axios'
 
-export function getNoticelist() {
+export function getNoticelist(params) {
   return request({
     url: '/home/notices',
-    method: 'get'
+    method: 'get',
+    params
   })
 }
 

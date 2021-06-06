@@ -27,16 +27,19 @@
   "main": "./src/main.ts",
   "license": "MIT",
   "author": {
-    "name" : "刘誉",
-    "email" : "974257574@qq.com"
+    "name": "刘誉",
+    "email": "974257574@qq.com"
   },
   "scripts": {
-    "dev": "vite --mode development",
+    "dev": "concurrently \"npm run dev:e \" \"npm run dev:f\"",
+    "dev:f": "vite --mode development",
+    "dev:e": "node ./server/app.js",
     "build": "vite build --mode production",
     "serve": "vite preview"
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "concurrently": "^6.2.0",
     "echarts": "^5.0.2",
     "element-plus": "^1.0.2-beta.32",
     "lodash": "^4.17.21",

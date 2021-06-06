@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-const mockPlugin = require("vite-plugin-mockit")
 import svgLoader from 'vite-svg-loader'
 import styleImport from 'vite-plugin-style-import'
 
@@ -12,7 +11,7 @@ export default defineConfig({
     strictPort: true,
     proxy: {
       '/au': {
-        target: `http://localhost:3030`,
+        target: `http://localhost:8888`,
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/au/, '')
       }
@@ -30,12 +29,6 @@ export default defineConfig({
           return `element-plus/lib/theme-chalk/${name}.css`
         }
       }]
-    }),
-    mockPlugin({
-      entry: "./mock/index.js",
-      watchFiles: [],
-      watchOptions: {},
-      ignore: /_test/
     }),
     svgLoader()
   ]
