@@ -2,7 +2,6 @@ import axios, { AxiosResponse } from 'axios'
 import qs from 'qs'
 import _sign from '../utils/_sign'
 
-console.log(import.meta.env)
 const request = axios.create({
   baseURL: import.meta.env.VITE_BASE_URL,
   timeout: 10000,

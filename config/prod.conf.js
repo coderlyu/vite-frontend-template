@@ -47,7 +47,10 @@ const prodConfig = {
         manualChunks: {
           lodash: ['lodash'],
           echarts: ['echarts'],
-          axios: ['axios']
+          // axios: ['axios'],
+          // nprogress: ['nprogress'],
+          // vue: ['vue'],
+          'element-plus': ['element-plus']
         }
       }
     },
