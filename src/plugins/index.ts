@@ -10,7 +10,7 @@ export default {
   install(vue: App) {
     vue.use(router)
     vue.use(store, key)
-    vue.use(ElementUI)
-    locale.use(lang) // 设置 element-plus 中文，暂时没法起作用，原因待研究
+    vue.use(ElementUI, { locale })
+    // locale.use(lang) // 设置 element-plus 中文，暂时没法起作用，原因待研究
   }
 }

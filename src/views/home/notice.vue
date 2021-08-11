@@ -62,7 +62,6 @@ export default defineComponent({
       ..._pagination,
       noticeList,
       tags,
-      isMobile: prop.isMobile,
       toDetail
     }
   }
