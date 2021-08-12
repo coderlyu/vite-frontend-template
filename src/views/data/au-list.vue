@@ -54,7 +54,7 @@ export default defineComponent({
     }
   },
   setup(prop, ctx) {
-    return {}
+    return { ...prop.pagination }
   }
 })
 </script>
