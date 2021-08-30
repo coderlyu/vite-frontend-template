@@ -44,6 +44,7 @@
     "element-plus": "^1.0.2-beta.32",
     "lodash": "^4.17.21",
     "nprogress": "^0.2.0",
+    "qs": "^6.10.1",
     "vite-plugin-mockit": "^1.0.1",
     "vue": "^3.0.5",
     "vue-router": "^4.0.4",
